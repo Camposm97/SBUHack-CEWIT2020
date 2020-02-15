@@ -6,6 +6,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import util.ImgUtil;
 
 public class MenuCorona extends Menu {
 	private MenuItem miConfirmedCases, miDeaths, miRecoveries;
@@ -42,6 +43,7 @@ public class MenuCorona extends Menu {
 			root.setCenter(recoveryBox);
 		});
 		this.getItems().addAll(miConfirmedCases, miDeaths, miRecoveries);
+		this.setGraphic(ImgUtil.loadImgVScale(ImgUtil.CORONAVIRUS_ICO,16.0,16.0));
 	}
 	
 	public LineChart makeChart() {

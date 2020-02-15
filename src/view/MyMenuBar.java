@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import util.AlertHelper;
 import util.CamposWeb;
+import util.ImgUtil;
 
 public class MyMenuBar extends MenuBar {
 	private BorderPane root;
@@ -26,14 +27,19 @@ public class MyMenuBar extends MenuBar {
 		miExit = new MenuItem("Exit");
 		menuView = new Menu("View");
 		menuCorona = new MenuCorona(root);
-
+		miExit.setGraphic(ImgUtil.loadImgV(ImgUtil.EXIT_ICO));
 		menuGithub = new MenuGithub();
-
+		
+		
 		menuHelp = new Menu("Help");
 		miCDC = new MenuItem("CDC");
+		miCDC.setGraphic(ImgUtil.loadImgVScale(ImgUtil.CDC_ICO, 16, 16));
 		miDonate = new MenuItem("Donate");
+		miDonate.setGraphic(ImgUtil.loadImgVScale(ImgUtil.DONATE_ICO, 16, 16));
 		miSources = new MenuItem("Sources");
+		miSources.setGraphic(ImgUtil.loadImgVScale(ImgUtil.SOURCES_ICO, 16, 16));
 		miAbout = new MenuItem("About");
+		miAbout.setGraphic(ImgUtil.loadImgVScale(ImgUtil.ABOUT_ICO, 16, 16));
 	}
 
 	private void editControls() {

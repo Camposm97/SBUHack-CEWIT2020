@@ -4,6 +4,7 @@ import static util.CamposWeb.*;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import util.ImgUtil;
 
 public class MenuGithub extends Menu {
 	private MenuItem miMichaelGH, miKieferGH, miChrisGH, miJonathanGH;
@@ -23,7 +24,7 @@ public class MenuGithub extends Menu {
 		miMichaelGH.setOnAction(e -> {
 			browse(GITHUB_MI);
 		});
-
+		this.setGraphic(ImgUtil.loadImgV(ImgUtil.GITHUB_ICO));
 		miKieferGH.setOnAction(e -> {
 			browse(GITHUB_KIEFER);
 		});
