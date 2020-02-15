@@ -5,10 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.MenuBox;
-import javafx.scene.chart.LineChart;
 
 public class App extends Application {
-	private static final String TITLE = "Corona Virus Tracker";
+	public static final String TITLE = "Corona Virus Tracker";
 	private BorderPane root;
 	private MenuBox menuBox;
 	
