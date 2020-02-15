@@ -11,16 +11,12 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ConfirmedBox {
 	private VBox confirmedBox;
 	private VBox chartBox;
-	private HBox box1;
-	private Label title;
 	
 	public ConfirmedBox(LineChart chart) {
 		confirmedBox = new VBox();
@@ -30,12 +26,16 @@ public class ConfirmedBox {
 		
 		XYChart.Series dataSet1 = new XYChart.Series<>();
 		dataSet1.setName("Confirmed Cases");
+		
+		//TO-DO: Write a loop to either read all data files or make a navigator to identify
+		//the day being analyzed
 		dataSet1.getData().add(new XYChart.Data(0, 1));
 		dataSet1.getData().add(new XYChart.Data(1, 3));
 		dataSet1.getData().add(new XYChart.Data(2, 5));
 		dataSet1.getData().add(new XYChart.Data(3, 19));
 		dataSet1.getData().add(new XYChart.Data(4, 54));
 		dataSet1.getData().add(new XYChart.Data(5, 286));
+		
 		chart.getData().add(dataSet1);
 		chart.setTitle("Confirmed Cases");
 		chartBox = new VBox(chart);

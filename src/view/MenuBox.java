@@ -1,26 +1,16 @@
 package view;
 
-import java.io.IOException;
-
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 public class MenuBox {
 	private MenuBar menuBar;
@@ -30,7 +20,6 @@ public class MenuBox {
 	private LineChart chart;
 	private String[] urls;
 	private Alert popup;
-	private Runtime rt;
 	
 	public MenuBox(BorderPane pane) {
 		menuBar = new MenuBar();		
@@ -54,7 +43,9 @@ public class MenuBox {
 		
 		urls = new String[] {"https://www.github.com/Camposm97", "https://www.github.com/kiefuh", 
 				"https://www.github.com/The3FacesOfSteve", "https://www.github.com/LemusJ27", 
-				};
+				"https://www.cdc.gov", 
+				"https://www.stjude.org/give.html?sc_dcm=254910812&sc_cid=kwp75674&source_code=IIQ190721002&ef_id=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE:G:s&s_kwcid=AL!4519!3!322242236868!b!!g!!%2Bdonate&gclid=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE",
+				""};
 		ExternalLink url = new ExternalLink();
 		
 		popup = new Alert(AlertType.INFORMATION);
@@ -65,12 +56,12 @@ public class MenuBox {
 		
 		menuFile.getItems().add(miExit);
 		menuView.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(),
-				miDeaths, new SeparatorMenuItem(),
-				miRecoveries);
-		menuHelp.getItems().addAll(miMichaelGH, new SeparatorMenuItem(),
-				miKieferGH, new SeparatorMenuItem(), miChrisGH, new SeparatorMenuItem(), 
-				miJonathanGH, new SeparatorMenuItem(), miCDC, new SeparatorMenuItem(),
-				miSources, new SeparatorMenuItem(), miAbout);
+				miDeaths, new SeparatorMenuItem(), miRecoveries, new SeparatorMenuItem(), 
+				miDonate);
+		menuHelp.getItems().addAll(miMichaelGH, new SeparatorMenuItem(), miKieferGH, 
+				new SeparatorMenuItem(), miChrisGH, new SeparatorMenuItem(), miJonathanGH,
+				new SeparatorMenuItem(), miCDC, new SeparatorMenuItem(), miSources, 
+				new SeparatorMenuItem(), miAbout);
 		
 		menuBar.getMenus().addAll(menuFile, menuView, menuHelp);
 		
@@ -78,9 +69,9 @@ public class MenuBox {
 		
 		ConfirmedBox bigCBox = new ConfirmedBox(chart);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
-		DeathBox bigDBox = new DeathBox();
+		DeathBox bigDBox = new DeathBox(chart);
 		VBox deathBox = bigDBox.getDeathBox();
-		RecoveryBox bigRBox = new RecoveryBox();
+		RecoveryBox bigRBox = new RecoveryBox(chart);
 		VBox recoveryBox = bigRBox.getRecoveryBox();
 		
 		miExit.setOnAction(e -> {
@@ -107,13 +98,11 @@ public class MenuBox {
 		
 		miJonathanGH.setOnAction(e -> {url.openLink(urls[3]);});
 		
-		miCDC.setOnAction(e -> {
-			
-		});
+		miCDC.setOnAction(e -> {url.openLink(urls[4]);});
 		
-		miDonate.setOnAction(e -> {
-			
-		});
+		miDonate.setOnAction(e -> {url.openLink(urls[5]);});
+		
+		miSources.setOnAction(e -> {url.openLink(urls[6]);});
 		
 		miAbout.setOnAction(e -> {
 			popup.setContentText("This application tracks a disease, Coronavirus in this "
