@@ -52,10 +52,10 @@ public class MenuBox {
 
 		menuFile.getItems().add(miExit);
 		menuView.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(), miDeaths, new SeparatorMenuItem(),
-				miRecoveries, new SeparatorMenuItem(), miDonate);
+				miRecoveries);
 		menuDeveloper.getItems().addAll(miMichaelGH, miKieferGH, miChrisGH, miJonathanGH);
 		menuHelp.getItems().addAll(menuDeveloper, new SeparatorMenuItem(), miCDC, new SeparatorMenuItem(),
-				miSources, new SeparatorMenuItem(), miAbout);
+				miSources,new SeparatorMenuItem(), miDonate, new SeparatorMenuItem(), miAbout);
 
 		menuBar.getMenus().addAll(menuFile, menuView, menuHelp);
 
@@ -91,32 +91,31 @@ public class MenuBox {
 		});
 
 		miKieferGH.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_MI);
+			CamposWeb.browse(CamposWeb.GITHUB_KIEFER);
 		});
 
 		miChrisGH.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_MI);
+			CamposWeb.browse(CamposWeb.GITHUB_CHRIS);
 		});
 
 		miJonathanGH.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_MI);
+			CamposWeb.browse(CamposWeb.GITHUB_LEMUS);
 		});
 
 		miCDC.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_MI);
+			CamposWeb.browse(CamposWeb.URL_CDC);
 		});
 
 		miDonate.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_MI);
+			CamposWeb.browse(CamposWeb.URL_DONATE);
 		});
 
 		miSources.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_MI);
+			CamposWeb.browse(CamposWeb.URL_SOURCE);
 		});
 
 		miAbout.setOnAction(e -> {
-			popup.setContentText("This application tracks a disease, Coronavirus in this "
-					+ "case, and shows how effective it is at ending people.");
+			popup.setContentText("This application plots coronavirus cases over time");
 			popup.showAndWait();
 		});
 
