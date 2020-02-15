@@ -1,6 +1,8 @@
 package app;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,20 +14,19 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.CoronaData;
 import model.CoronaDatabase;
 import util.CamposUtils;
 import util.DataParser;
 
 public class CamposApp extends Application {
-	public static void main(String[] args) {
-		launch();
-	}
+	private CoronaDatabase db;
 
 	@Override
 	public void init() {
 		try {
-			CoronaDatabase coronaDb = DataParser.importCorona();
-			coronaDb.display();
+			db = DataParser.importCorona();
+			db.display();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -35,27 +36,19 @@ public class CamposApp extends Application {
 	public void start(Stage stage) throws Exception {
 		final NumberAxis xAxis = new NumberAxis();
 		final NumberAxis yAxis = new NumberAxis();
-		xAxis.setLabel("X Axis");
-		yAxis.setLabel("Y Axis");
+		xAxis.setLabel("Day");
+		yAxis.setLabel("Death Count");
 		LineChart<Number, Number> lc = new LineChart<>(xAxis, yAxis);
-		lc.setTitle("A Line Graph");
-		XYChart.Series<Number, Number> series = new XYChart.Series<>();
-		series.setName("Mine");
-		// populating the series with data
-		series.getData().add(new Data<Number, Number>(1, 23));
-		series.getData().add(new Data<Number, Number>(2, 14));
-		series.getData().add(new Data<Number, Number>(3, 15));
-		series.getData().add(new Data<Number, Number>(4, 24));
-		series.getData().add(new Data<Number, Number>(5, 34));
-		series.getData().add(new Data<Number, Number>(6, 36));
-		series.getData().add(new Data<Number, Number>(7, 22));
-		series.getData().add(new Data<Number, Number>(8, 45));
-		series.getData().add(new Data<Number, Number>(9, 43));
-		series.getData().add(new Data<Number, Number>(10, 17));
-		series.getData().add(new Data<Number, Number>(11, 29));
-		series.getData().add(new Data<Number, Number>(12, 25));
-		
-		lc.getData().add(series);
+		List<CoronaData> list = db.getCoronaDeaths();
+		for (CoronaData c : list) {
+			LinkedList<Integer> countList = c.getDeathsConfirmedOrRecovered();
+			XYChart.Series<Number, Number> series = new XYChart.Series<>();
+			series.setName(c.getProvinceOrState());
+			for (int i = 0; i < countList.size(); i++) {
+				series.getData().add(new Data<Number, Number>(i, countList.get(i)));
+			}
+			lc.getData().add(series);
+		}
 		lc.setOnContextMenuRequested(e1 -> {
 			System.out.println("Hello World!");
 			ContextMenu cm = new ContextMenu();
@@ -69,5 +62,9 @@ public class CamposApp extends Application {
 		StackPane root = new StackPane(lc);
 		stage.setScene(new Scene(root));
 		stage.show();
+	}
+	
+	public static void main(String[] args) {
+		launch();
 	}
 }
