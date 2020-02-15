@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import view.MyMenuBar;
 
 public class App extends Application {
-	public static final String TITLE = "Coronavirus Tracker";
+	public static final String TITLE = "Coronavirus Monitor";
 	private BorderPane root;
 	private MyMenuBar menuBar;
 	

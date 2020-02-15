@@ -44,10 +44,12 @@ public class CamposApp extends Application {
 			LinkedList<Integer> countList = c.getDeathsConfirmedOrRecovered();
 			XYChart.Series<Number, Number> series = new XYChart.Series<>();
 			series.setName(c.getProvinceOrState());
+			
 			for (int i = 0; i < countList.size(); i++) {
 				series.getData().add(new Data<Number, Number>(i, countList.get(i)));
 			}
 			lc.getData().add(series);
+			break;
 		}
 		lc.setOnContextMenuRequested(e1 -> {
 			System.out.println("Hello World!");
@@ -63,7 +65,7 @@ public class CamposApp extends Application {
 		stage.setScene(new Scene(root));
 		stage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch();
 	}
