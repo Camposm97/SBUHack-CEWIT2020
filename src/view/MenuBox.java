@@ -15,7 +15,7 @@ import util.CamposWeb;
 
 public class MenuBox {
 	private MenuBar menuBar;
-	private Menu menuFile, menuView, menuHelp;
+	private Menu menuFile, menuView, menuHelp, menuDeveloper;
 	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries, miMichaelGH, miKieferGH, miChrisGH, miJonathanGH,
 			miCDC, miDonate, miSources, miAbout;
 	private LineChart chartConfirmed, chartDeath, chartRecovery;
@@ -31,19 +31,21 @@ public class MenuBox {
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
 		miRecoveries = new MenuItem("Recoveries");
-
-		menuHelp = new Menu("Help");
+		
+		menuDeveloper = new Menu("Developer's Github");
 		miMichaelGH = new MenuItem("Michael's GitHub");
 		miKieferGH = new MenuItem("Kiefer's GitHub");
 		miChrisGH = new MenuItem("Chris's GitHub");
 		miJonathanGH = new MenuItem("Jonathan's GitHub");
+
+		menuHelp = new Menu("Help");
 		miCDC = new MenuItem("CDC");
 		miDonate = new MenuItem("Donate");
 		miSources = new MenuItem("Sources");
 		miAbout = new MenuItem("About");
 
 		popup = new Alert(AlertType.INFORMATION);
-		popup.setTitle("About INSERT_APP_NAME_HERE");
+		popup.setTitle("About Corona Virus Tracker");
 		popup.setHeaderText(null);
 
 		pane.setTop(this.getRoot());
@@ -51,8 +53,8 @@ public class MenuBox {
 		menuFile.getItems().add(miExit);
 		menuView.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(), miDeaths, new SeparatorMenuItem(),
 				miRecoveries, new SeparatorMenuItem(), miDonate);
-		menuHelp.getItems().addAll(miMichaelGH, new SeparatorMenuItem(), miKieferGH, new SeparatorMenuItem(), miChrisGH,
-				new SeparatorMenuItem(), miJonathanGH, new SeparatorMenuItem(), miCDC, new SeparatorMenuItem(),
+		menuDeveloper.getItems().addAll(miMichaelGH, miKieferGH, miChrisGH, miJonathanGH);
+		menuHelp.getItems().addAll(menuDeveloper, new SeparatorMenuItem(), miCDC, new SeparatorMenuItem(),
 				miSources, new SeparatorMenuItem(), miAbout);
 
 		menuBar.getMenus().addAll(menuFile, menuView, menuHelp);
