@@ -55,7 +55,7 @@ public class DataImport {
 			sc.nextLine();
 			sc.nextLine();
 			while (sc.hasNextLine()) {
-				inLine = sc.nextLine().replaceAll(",", ", ");
+				inLine = editCommas(sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
@@ -104,7 +104,7 @@ public class DataImport {
 			sc.nextLine();
 			sc.nextLine();
 			while (sc.hasNextLine()) {
-				inLine = sc.nextLine().replaceAll(",", ", ");
+				inLine = editCommas(sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
@@ -152,8 +152,9 @@ public class DataImport {
 			Scanner sc = new Scanner(url.openStream());
 			sc.nextLine();
 			sc.nextLine();
+			String currentLine;
 			while (sc.hasNextLine()) {
-				inLine = sc.nextLine().replaceAll(",", ", ");
+				inLine =editCommas( sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
@@ -218,5 +219,10 @@ public class DataImport {
 		CoronaVirusInfo cvi = new CoronaVirusInfo(city, province, stateOrCountry, lastUpdate, confirmedCases, deaths,
 				recovered);
 		return cvi;
+	}
+	
+	public static String editCommas(String s) {
+		s = s.replaceAll(", ", " ");
+		return s.replaceAll(",", ", ");
 	}
 }
