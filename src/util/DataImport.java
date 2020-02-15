@@ -11,6 +11,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import model.CoronaData;
 import model.CoronaVirusInfo;
+import model.SavedCoronaData;
 
 public class DataImport {
 	private static final int VALID_RESPONSE_CODE = 200;
@@ -85,6 +86,14 @@ public class DataImport {
 			return listCDD;
 		}
 		
+	}
+	
+	public static SavedCoronaData importCorona() throws IOException {
+		LinkedList<CoronaData> cdd=DataImport.importDeathData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
+		LinkedList<CoronaData> ccd=DataImport.importConfirmedData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
+		LinkedList<CoronaData> crd=DataImport.importRecoveredData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
+		SavedCoronaData saveCorona= new SavedCoronaData(cdd,crd,ccd);
+		return saveCorona;
 	}
 	
 	public static LinkedList<CoronaData> importConfirmedData(String url1) throws IOException {
