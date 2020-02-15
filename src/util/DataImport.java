@@ -11,6 +11,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import model.CoronaData;
 import model.CoronaVirusInfo;
+import model.SavedCoronaData;
 
 public class DataImport {
 	private static final int VALID_RESPONSE_CODE = 200;
@@ -55,7 +56,7 @@ public class DataImport {
 			sc.nextLine();
 			sc.nextLine();
 			while (sc.hasNextLine()) {
-				inLine = sc.nextLine().replaceAll(",", ", ");
+				inLine = editCommas(sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
@@ -87,6 +88,14 @@ public class DataImport {
 		
 	}
 	
+	public static SavedCoronaData importCorona() throws IOException {
+		LinkedList<CoronaData> cdd=DataImport.importDeathData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
+		LinkedList<CoronaData> ccd=DataImport.importConfirmedData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
+		LinkedList<CoronaData> crd=DataImport.importRecoveredData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
+		SavedCoronaData saveCorona= new SavedCoronaData(cdd,crd,ccd);
+		return saveCorona;
+	}
+	
 	public static LinkedList<CoronaData> importConfirmedData(String url1) throws IOException {
 		String s = url1;
 		String inLine = "";
@@ -104,7 +113,7 @@ public class DataImport {
 			sc.nextLine();
 			sc.nextLine();
 			while (sc.hasNextLine()) {
-				inLine = sc.nextLine().replaceAll(",", ", ");
+				inLine = editCommas(sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
@@ -152,8 +161,9 @@ public class DataImport {
 			Scanner sc = new Scanner(url.openStream());
 			sc.nextLine();
 			sc.nextLine();
+			String currentLine;
 			while (sc.hasNextLine()) {
-				inLine = sc.nextLine().replaceAll(",", ", ");
+				inLine =editCommas( sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
@@ -218,5 +228,10 @@ public class DataImport {
 		CoronaVirusInfo cvi = new CoronaVirusInfo(city, province, stateOrCountry, lastUpdate, confirmedCases, deaths,
 				recovered);
 		return cvi;
+	}
+	
+	public static String editCommas(String s) {
+		s = s.replaceAll(", ", " ");
+		return s.replaceAll(",", ", ");
 	}
 }

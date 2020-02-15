@@ -2,6 +2,7 @@ package util;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -18,7 +19,6 @@ public class CamposUtils {
 			String currentLine = editCommas(in.nextLine());
 //			System.out.println(currentLine);
 			String[] tokens = currentLine.split(", ");
-			System.out.println(tokens.length);
 		}
 		in.close();
 	}
