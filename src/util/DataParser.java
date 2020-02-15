@@ -15,6 +15,7 @@ import model.CoronaDatabase;
 
 public class DataParser {
 	private static final int VALID_RESPONSE_CODE = 200;
+
 	public static LinkedList<CoronaVirusInfo> importCoronaData(File importFile) {
 		File f = importFile;
 		Scanner in;
@@ -33,17 +34,17 @@ public class DataParser {
 				theList.add(ifSevenScraper(tokens, currentLine));
 			}
 			if (tokens.length == 6) {
-				//theList.add(ifSixScraper(tokens, currentLine));
+				// theList.add(ifSixScraper(tokens, currentLine));
 			}
 		}
 		return theList;
 	}
-	
+
 	public static LinkedList<CoronaData> importDeathData(String url1) throws IOException {
 		String s = url1;
 		String inLine = "";
 		URL url = new URL(s);
-		LinkedList<CoronaData> listCDD= new LinkedList<>();
+		LinkedList<CoronaData> listCDD = new LinkedList<>();
 		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
 		c.setRequestMethod("GET");
 		c.connect();
@@ -62,45 +63,48 @@ public class DataParser {
 				String latitude;
 				String longitude;
 				int numberOfDeaths;
-				LinkedList<Integer> daysOfDeaths= new LinkedList<>();
-				String tokens[]=inLine.split(",");
+				LinkedList<Integer> daysOfDeaths = new LinkedList<>();
+				String tokens[] = inLine.split(",");
 				if (inLine.charAt(0) == ',') {
 					provinceOrState = "none";
-				}else {
-					provinceOrState=tokens[0];
+				} else {
+					provinceOrState = tokens[0];
 				}
-				countryOrRegion=tokens[1];
-				latitude=tokens[2];
-				longitude=tokens[3];
-				for (int i=4;i<tokens.length;i++) {
-					if(tokens[i].equals(" ")) {
-						numberOfDeaths=0;
-					}else {
-						numberOfDeaths=(int)Double.parseDouble(tokens[i].trim());
+				countryOrRegion = tokens[1];
+				latitude = tokens[2];
+				longitude = tokens[3];
+				for (int i = 4; i < tokens.length; i++) {
+					if (tokens[i].equals(" ")) {
+						numberOfDeaths = 0;
+					} else {
+						numberOfDeaths = (int) Double.parseDouble(tokens[i].trim());
 					}
 					daysOfDeaths.add(numberOfDeaths);
 				}
-				CoronaData cdd= new CoronaData(provinceOrState,countryOrRegion,latitude,longitude,daysOfDeaths);
+				CoronaData cdd = new CoronaData(provinceOrState, countryOrRegion, latitude, longitude, daysOfDeaths);
 				listCDD.add(cdd);
 			}
 			return listCDD;
 		}
-		
+
 	}
-	
+
 	public static CoronaDatabase importCorona() throws IOException {
-		LinkedList<CoronaData> cdd=DataParser.importDeathData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
-		LinkedList<CoronaData> ccd=DataParser.importConfirmedData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
-		LinkedList<CoronaData> crd=DataParser.importRecoveredData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
-		CoronaDatabase saveCorona= new CoronaDatabase(cdd,crd,ccd);
+		LinkedList<CoronaData> cdd = DataParser.importDeathData(
+				"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
+		LinkedList<CoronaData> ccd = DataParser.importConfirmedData(
+				"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
+		LinkedList<CoronaData> crd = DataParser.importRecoveredData(
+				"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
+		CoronaDatabase saveCorona = new CoronaDatabase(cdd, crd, ccd);
 		return saveCorona;
 	}
-	
+
 	public static LinkedList<CoronaData> importConfirmedData(String url1) throws IOException {
 		String s = url1;
 		String inLine = "";
 		URL url = new URL(s);
-		LinkedList<CoronaData> listCDD= new LinkedList<>();
+		LinkedList<CoronaData> listCDD = new LinkedList<>();
 		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
 		c.setRequestMethod("GET");
 		c.connect();
@@ -119,37 +123,37 @@ public class DataParser {
 				String latitude;
 				String longitude;
 				int numberOfConfirmed;
-				LinkedList<Integer> daysOfDeaths= new LinkedList<>();
-				String tokens[]=inLine.split(",");
+				LinkedList<Integer> daysOfDeaths = new LinkedList<>();
+				String tokens[] = inLine.split(",");
 				if (inLine.charAt(0) == ',') {
 					provinceOrState = "none";
-				}else {
-					provinceOrState=tokens[0];
+				} else {
+					provinceOrState = tokens[0];
 				}
-				countryOrRegion=tokens[1];
-				latitude=tokens[2];
-				longitude=tokens[3];
-				for (int i=4;i<tokens.length;i++) {
-					if(tokens[i].equals(" ")) {
-						numberOfConfirmed=0;
-					}else {
-						numberOfConfirmed=(int)Double.parseDouble(tokens[i].trim());
+				countryOrRegion = tokens[1];
+				latitude = tokens[2];
+				longitude = tokens[3];
+				for (int i = 4; i < tokens.length; i++) {
+					if (tokens[i].equals(" ")) {
+						numberOfConfirmed = 0;
+					} else {
+						numberOfConfirmed = (int) Double.parseDouble(tokens[i].trim());
 					}
 					daysOfDeaths.add(numberOfConfirmed);
 				}
-				CoronaData cdd= new CoronaData(provinceOrState,countryOrRegion,latitude,longitude,daysOfDeaths);
+				CoronaData cdd = new CoronaData(provinceOrState, countryOrRegion, latitude, longitude, daysOfDeaths);
 				listCDD.add(cdd);
 			}
 			return listCDD;
 		}
-		
+
 	}
-	
+
 	public static LinkedList<CoronaData> importRecoveredData(String url1) throws IOException {
 		String s = url1;
 		String inLine = "";
 		URL url = new URL(s);
-		LinkedList<CoronaData> listCDD= new LinkedList<>();
+		LinkedList<CoronaData> listCDD = new LinkedList<>();
 		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
 		c.setRequestMethod("GET");
 		c.connect();
@@ -163,37 +167,38 @@ public class DataParser {
 			sc.nextLine();
 			String currentLine;
 			while (sc.hasNextLine()) {
-				inLine =editCommas( sc.nextLine());
+				inLine = editCommas(sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
 				String longitude;
 				int numberOfRecovered;
-				LinkedList<Integer> daysOfDeaths= new LinkedList<>();
-				String tokens[]=inLine.split(",");
+				LinkedList<Integer> daysOfDeaths = new LinkedList<>();
+				String tokens[] = inLine.split(",");
 				if (inLine.charAt(0) == ',') {
 					provinceOrState = "none";
-				}else {
-					provinceOrState=tokens[0];
+				} else {
+					provinceOrState = tokens[0];
 				}
-				countryOrRegion=tokens[1];
-				latitude=tokens[2];
-				longitude=tokens[3];
-				for (int i=4;i<tokens.length;i++) {
-					if(tokens[i].equals(" ")) {
-						numberOfRecovered=0;
-					}else {
-						numberOfRecovered=(int)Double.parseDouble(tokens[i].trim());
+				countryOrRegion = tokens[1];
+				latitude = tokens[2];
+				longitude = tokens[3];
+				for (int i = 4; i < tokens.length; i++) {
+					if (tokens[i].equals(" ")) {
+						numberOfRecovered = 0;
+					} else {
+						numberOfRecovered = (int) Double.parseDouble(tokens[i].trim());
 					}
 					daysOfDeaths.add(numberOfRecovered);
 				}
-				CoronaData cdd= new CoronaData(provinceOrState,countryOrRegion,latitude,longitude,daysOfDeaths);
+				CoronaData cdd = new CoronaData(provinceOrState, countryOrRegion, latitude, longitude, daysOfDeaths);
 				listCDD.add(cdd);
 			}
 			return listCDD;
 		}
-		
+
 	}
+
 	private static CoronaVirusInfo ifSevenScraper(String[] tokens, String currentLine) {
 		String city = null;
 		String province = null;
@@ -229,7 +234,7 @@ public class DataParser {
 				recovered);
 		return cvi;
 	}
-	
+
 	public static String editCommas(String s) {
 		s = s.replaceAll(", ", " ");
 		return s.replaceAll(",", ", ");
