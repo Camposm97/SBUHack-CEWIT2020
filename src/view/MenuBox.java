@@ -13,15 +13,11 @@ import javafx.scene.layout.VBox;
 public class MenuBox {
 	private MenuBar menuBar;
 	private Menu menuFile, menuView;
-	private MenuItem miExit;
-	private MenuItem miConfirmedCases;
-	private MenuItem miDeaths;
-	private MenuItem recoveriesItem;
+	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries;
 	private LineChart chart;
 	
 	public MenuBox(BorderPane pane) {
 		menuBar = new MenuBar();
-		menuBar.prefWidthProperty().bind(pane.widthProperty());
 		
 		menuFile = new Menu("File");
 		miExit = new MenuItem("Exit");
@@ -29,14 +25,14 @@ public class MenuBox {
 		menuView = new Menu("View");
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
-		recoveriesItem = new MenuItem("Recoveries");
+		miRecoveries = new MenuItem("Recoveries");
 		
 		pane.setTop(this.getRoot());
 		
 		menuFile.getItems().add(miExit);
 		menuView.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(),
 				miDeaths, new SeparatorMenuItem(),
-				recoveriesItem);
+				miRecoveries);
 		
 		menuBar.getMenus().addAll(menuFile, menuView);
 		
@@ -61,7 +57,7 @@ public class MenuBox {
 			pane.setCenter(deathBox);
 		});
 		
-		recoveriesItem.setOnAction(e -> {
+		miRecoveries.setOnAction(e -> {
 			pane.setCenter(recoveryBox);
 		});
 	}

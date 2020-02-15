@@ -8,14 +8,17 @@ import view.MenuBox;
 import javafx.scene.chart.LineChart;
 
 public class App extends Application {
+	private static final String TITLE = "Corona Virus Tracker";
+	private BorderPane root;
+	private MenuBox menuBox;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
-		BorderPane root = new BorderPane();
-		MenuBox menuBox = new MenuBox(root);
+		root = new BorderPane();
+		menuBox = new MenuBox(root);
 		root.setTop(menuBox.getRoot());
-		Scene scene = new Scene(root, 700, 600);
-		stage.setTitle("Coronavirus Graphs");
-		stage.setScene(scene);
+		stage.setTitle(TITLE);
+		stage.setScene(new Scene(root, 700, 600));
 		stage.show();
 	}
 	
