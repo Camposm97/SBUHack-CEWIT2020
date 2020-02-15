@@ -43,19 +43,7 @@ public class MenuBox {
 		miDonate = new MenuItem("Donate");
 		miSources = new MenuItem("Sources");
 		miAbout = new MenuItem("About");
-<<<<<<< HEAD
-		
-		urls = new String[] {"https://www.github.com/Camposm97", "https://www.github.com/kiefuh", 
-				"https://www.github.com/The3FacesOfSteve", "https://www.github.com/LemusJ27", 
-				"https://www.cdc.gov", 
-				"https://www.stjude.org/give.html?sc_dcm=254910812&sc_cid=kwp75674&source_code=IIQ190721002&ef_id=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE:G:s&s_kwcid=AL!4519!3!322242236868!b!!g!!%2Bdonate&gclid=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE",
-				"https://www.youtube.com/watch?v=dQw4w9WgXcQ"};
-		//Last url will be updated when source links are available
-		//ExternalLink url = new ExternalLink();
-		
-=======
 
->>>>>>> dffdde9464b0baa91161e95d770fda0dd479f6de
 		popup = new Alert(AlertType.INFORMATION);
 		popup.setTitle("About Corona Virus Tracker");
 		popup.setHeaderText(null);
@@ -97,23 +85,6 @@ public class MenuBox {
 		miRecoveries.setOnAction(e -> {
 			pane.setCenter(recoveryBox);
 		});
-<<<<<<< HEAD
-		
-//		miMichaelGH.setOnAction(e -> {url.openLink(urls[0]);});
-//		
-//		miKieferGH.setOnAction(e -> {url.openLink(urls[1]);});
-//		
-//		miChrisGH.setOnAction(e -> {url.openLink(urls[2]);});
-//		
-//		miJonathanGH.setOnAction(e -> {url.openLink(urls[3]);});
-//		
-//		miCDC.setOnAction(e -> {url.openLink(urls[4]);});
-//		
-//		miDonate.setOnAction(e -> {url.openLink(urls[5]);});
-//		
-//		miSources.setOnAction(e -> {url.openLink(urls[6]);});
-		
-=======
 
 		miMichaelGH.setOnAction(e -> {
 			CamposWeb.browse(CamposWeb.GITHUB_MI);
@@ -143,7 +114,6 @@ public class MenuBox {
 			CamposWeb.browse(CamposWeb.GITHUB_MI);
 		});
 
->>>>>>> dffdde9464b0baa91161e95d770fda0dd479f6de
 		miAbout.setOnAction(e -> {
 			popup.setContentText("This application tracks a disease, Coronavirus in this "
 					+ "case, and shows how effective it is at ending people.");
