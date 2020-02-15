@@ -26,34 +26,40 @@ public class DataImport {
 		int recovered;
 		while(in.hasNextLine()) {
 			String currentLine=in.nextLine();
-			String[] tokens= new String[6];
-			int length=tokens.length;
-			int tokenCount=0;
-			int currentPosition=0;
-			int offSet;
-			for (int i=0;i<currentLine.length();i++) {
-				offSet= currentLine.substring(currentPosition,currentLine.indexOf(',')).length();
-				tokens[tokenCount]=currentLine.substring(0,currentLine.substring(currentPosition,currentLine.length()).indexOf(','));
-				currentPosition=currentPosition+offSet;
-				tokenCount++;
+			String[] tokens= currentLine.split(",");
+			if(currentLine.charAt(0)==',') {
+				province="none";
 			}
-			province=tokens[0];
-			stateOrCountry=tokens[1];
-			lastUpdate=tokens[2];
-			//if (tokens.len)
-			if (tokens[3].charAt(0)>'9'||tokens[3].charAt(0)<'0') {
+			if(currentLine.length()==3) {
+				province=tokens[0];
+				stateOrCountry=tokens[1];
+				lastUpdate=tokens[2];
 				confirmedCases=0;
-			}else {
-				confirmedCases=Integer.parseInt(tokens[3]);
-			}
-			if (tokens[4].charAt(0)>'9'||tokens[4].charAt(0)<'0') {
 				deaths=0;
-			}else {
-				deaths=Integer.parseInt(tokens[4]);
-			}
-			if(tokens[5].charAt(0)>'9'||tokens[5].charAt(0)<'0') {
 				recovered=0;
-			}else {
+			}
+			if(currentLine.length()==4) {
+				province=tokens[0];
+				stateOrCountry=tokens[1];
+				lastUpdate=tokens[2];
+				confirmedCases=Integer.parseInt(tokens[3]);
+				deaths=0;
+				recovered=0;
+			}
+			if(currentLine.length()==5) {
+				province=tokens[0];
+				stateOrCountry=tokens[1];
+				lastUpdate=tokens[2];
+				confirmedCases=Integer.parseInt(tokens[3]);
+				deaths=Integer.parseInt(tokens[4]);
+				recovered=0;
+			}
+			else {
+				province=tokens[0];
+				stateOrCountry=tokens[1];
+				lastUpdate=tokens[2];
+				confirmedCases=Integer.parseInt(tokens[3]);
+				deaths=Integer.parseInt(tokens[4]);
 				recovered=Integer.parseInt(tokens[5]);
 			}
 			CoronaVirusInfo cvi= new CoronaVirusInfo(province,stateOrCountry,lastUpdate,confirmedCases,deaths,recovered);
