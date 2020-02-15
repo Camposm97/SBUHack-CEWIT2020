@@ -56,7 +56,7 @@ public class MyMenuBar extends MenuBar {
 		});
 
 		miAbout.setOnAction(e -> {
-			String content = "The purpose of this application is to track the corona virus.  Shows how effective it is at ending people.";
+			String content = "The purpose of this application is to track the novel coronavirus COVID-19.  Shows how effective it is at ending people.";
 			AlertHelper.showInfo(App.TITLE, "About", content);
 		});
 
