@@ -5,9 +5,8 @@ import java.util.Arrays;
 
 public class CamposUtils {
 	public static void main(String[] args) {
-		String s = ",,,";
-//		System.out.println(Arrays.toString(s.split(", ")));
-		System.out.println(s.replaceAll(",", ", "));
+		String s = " 1.0";
+		System.out.println(s.trim());
 	}
 	
 	public static File[] scanFiles(String dir) {

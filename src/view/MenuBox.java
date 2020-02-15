@@ -12,9 +12,9 @@ import javafx.scene.layout.VBox;
 
 public class MenuBox {
 	private MenuBar menuBar;
-	private MenuItem exitMenuItem;
-	private MenuItem confirmedCasesItem;
-	private MenuItem deathsItem;
+	private MenuItem miExit;
+	private MenuItem miConfirmedCases;
+	private MenuItem miDeaths;
 	private MenuItem recoveriesItem;
 	private LineChart chart;
 	
@@ -22,22 +22,22 @@ public class MenuBox {
 		menuBar = new MenuBar();
 		menuBar.prefWidthProperty().bind(pane.widthProperty());
 		
-		Menu fileMenu = new Menu("File");
+		Menu menuFile = new Menu("File");
 		MenuItem exitMenuItem = new MenuItem("Exit");
 		
 		Menu viewMenu = new Menu("View");
-		confirmedCasesItem = new MenuItem("Confirmed Cases");
-		deathsItem = new MenuItem("Deaths");
+		miConfirmedCases = new MenuItem("Confirmed Cases");
+		miDeaths = new MenuItem("Deaths");
 		recoveriesItem = new MenuItem("Recoveries");
 		
 		pane.setTop(this.getMenuBar());
 		
-		fileMenu.getItems().add(exitMenuItem);
-		viewMenu.getItems().addAll(confirmedCasesItem, new SeparatorMenuItem(),
-				deathsItem, new SeparatorMenuItem(),
+		menuFile.getItems().add(exitMenuItem);
+		viewMenu.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(),
+				miDeaths, new SeparatorMenuItem(),
 				recoveriesItem);
 		
-		menuBar.getMenus().addAll(fileMenu, viewMenu);
+		menuBar.getMenus().addAll(menuFile, viewMenu);
 		
 		chart = makeChart();
 		
@@ -52,11 +52,11 @@ public class MenuBox {
 			Platform.exit();
 		});
 		
-		confirmedCasesItem.setOnAction(e -> {
+		miConfirmedCases.setOnAction(e -> {
 			pane.setCenter(confirmedBox);
 		});
 		
-		deathsItem.setOnAction(e -> {
+		miDeaths.setOnAction(e -> {
 			pane.setCenter(deathBox);
 		});
 		
