@@ -1,15 +1,17 @@
 package view;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.IOException;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogEvent;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -18,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 public class MenuBox {
 	private MenuBar menuBar;
@@ -25,9 +28,10 @@ public class MenuBox {
 	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries, miMichaelGH, 
 	miKieferGH, miChrisGH, miJonathanGH, miCDC, miDonate, miSources, miAbout;
 	private LineChart chart;
-	private WebView browser = new WebView();
-	private WebEngine appBrowser = browser.getEngine();
-
+	private String[] urls;
+	private Alert popup;
+	private Runtime rt;
+	
 	public MenuBox(BorderPane pane) {
 		menuBar = new MenuBar();		
 		menuFile = new Menu("File");
@@ -47,6 +51,15 @@ public class MenuBox {
 		miDonate = new MenuItem("Donate");
 		miSources = new MenuItem("Sources");
 		miAbout = new MenuItem("About");
+		
+		urls = new String[] {"https://www.github.com/Camposm97", "https://www.github.com/kiefuh", 
+				"https://www.github.com/The3FacesOfSteve", "https://www.github.com/LemusJ27", 
+				};
+		ExternalLink url = new ExternalLink();
+		
+		popup = new Alert(AlertType.INFORMATION);
+		popup.setTitle("About INSERT_APP_NAME_HERE");
+		popup.setHeaderText(null);
 		
 		pane.setTop(this.getRoot());
 		
@@ -86,24 +99,26 @@ public class MenuBox {
 			pane.setCenter(recoveryBox);
 		});
 		
-		miMichaelGH.setOnAction(e -> {
-			appBrowser.load("https://github.com/Camposm97");
+		miMichaelGH.setOnAction(e -> {url.openLink(urls[0]);});
+		
+		miKieferGH.setOnAction(e -> {url.openLink(urls[1]);});
+		
+		miChrisGH.setOnAction(e -> {url.openLink(urls[2]);});
+		
+		miJonathanGH.setOnAction(e -> {url.openLink(urls[3]);});
+		
+		miCDC.setOnAction(e -> {
+			
 		});
 		
-		miKieferGH.setOnAction(e -> {
-			appBrowser.load("https://github.com/kiefuh");
-		});
-		
-		miChrisGH.setOnAction(e -> {
-			appBrowser.load("https://github.com/The3FacesOfSteve");
-		});
-		
-		miJonathanGH.setOnAction(e -> {
-			appBrowser.load("https://github.com/LemusJ27");
+		miDonate.setOnAction(e -> {
+			
 		});
 		
 		miAbout.setOnAction(e -> {
-			
+			popup.setContentText("This application tracks a disease, Coronavirus in this "
+					+ "case, and shows how effective it is at ending people.");
+			popup.showAndWait();
 		});
 		
 	}
