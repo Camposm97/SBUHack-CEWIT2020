@@ -1,6 +1,7 @@
 package model;
 
 public class CoronaVirusInfo {
+	private String city;
 	private String province;
 	private String stateOrCountry;
 	private String lastUpdate;
@@ -8,6 +9,16 @@ public class CoronaVirusInfo {
 	private int deaths;
 	private int recovered;
 	public CoronaVirusInfo(String province, String stateOrCountry,  String lastUpdate, int confirmedCases,
+			int deaths, int recovered) {
+		super();
+		this.province = province;
+		this.stateOrCountry = stateOrCountry;
+		this.lastUpdate = lastUpdate;
+		this.confirmedCases = confirmedCases;
+		this.deaths = deaths;
+		this.recovered = recovered;
+	}
+	public CoronaVirusInfo(String city,String province, String stateOrCountry,  String lastUpdate, int confirmedCases,
 			int deaths, int recovered) {
 		super();
 		this.province = province;
