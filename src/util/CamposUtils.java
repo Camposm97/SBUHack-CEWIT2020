@@ -15,4 +15,8 @@ public class CamposUtils {
 			}
 		}
 	}
+	
+	public static File[] scanFiles(String dir) {
+		return new File(dir).listFiles();
+	}
 }
