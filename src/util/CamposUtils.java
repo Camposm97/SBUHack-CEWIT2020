@@ -1,28 +1,18 @@
 package util;
 
 import java.io.File;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.IOException;
 
-import javax.net.ssl.HttpsURLConnection;
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.chart.Chart;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class CamposUtils {
-	public static void main(String[] args) throws Exception {
-		String s = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv";
-		URL url = new URL(s);
-		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
-		c.setRequestMethod("GET");
-		c.connect();
-		Scanner in = new Scanner(url.openStream());
-		while (in.hasNextLine()) {
-			String currentLine = editCommas(in.nextLine());
-//			System.out.println(currentLine);
-			String[] tokens = currentLine.split(", ");
-		}
-		in.close();
-	}
-	
 	public static File[] scanFiles(String dir) {
 		return new File(dir).listFiles();
 	}
@@ -30,5 +20,15 @@ public class CamposUtils {
 	public static String editCommas(String s) {
 		s = s.replaceAll(", ", " ");
 		return s.replaceAll(",", ", ");
+	}
+	
+	public static void saveGraph(Chart chart) {
+		WritableImage image = chart.snapshot(new SnapshotParameters(), null);	    
+	    File file = new FileChooser().showSaveDialog(new Stage());
+	    try {
+	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+	    } catch (IOException ex) {
+	    	ex.printStackTrace();
+	    }
 	}
 }

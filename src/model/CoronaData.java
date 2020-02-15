@@ -59,4 +59,13 @@ public class CoronaData {
 		this.deathsConfirmedOrRecovered = numberOfDeaths;
 	}
 
+	@Override
+	public String toString() {
+		return "CoronaData [provinceOrState=" + provinceOrState + ", countryOrRegion=" + countryOrRegion + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", deathsConfirmedOrRecovered=" + deathsConfirmedOrRecovered
+				+ "]";
+	}
+	
+	
+
 }

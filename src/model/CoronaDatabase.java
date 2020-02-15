@@ -38,4 +38,22 @@ public class CoronaDatabase {
 		this.coronaConfirmed = coronaConfirmed;
 	}
 
+	public void display() {
+		System.out.println("Corona Deaths");
+		for (CoronaData data : coronaDeaths) {
+			System.out.println(data);
+		}
+		System.out.println();
+		System.out.println("Corona Recovered");
+		for (CoronaData data : coronaRecovered) {
+			System.out.println(data);
+		}
+		System.out.println();
+		System.out.println("Corona Confirmed");
+		for (CoronaData data : coronaConfirmed) {
+			System.out.println(data);
+		}
+		System.out.println("Done.");
+	}
+
 }
