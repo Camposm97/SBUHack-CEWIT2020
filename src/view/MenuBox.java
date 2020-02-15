@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 public class MenuBox {
 	private MenuBar menuBar;
+	private Menu menuFile, menuView;
 	private MenuItem miExit;
 	private MenuItem miConfirmedCases;
 	private MenuItem miDeaths;
@@ -22,22 +23,22 @@ public class MenuBox {
 		menuBar = new MenuBar();
 		menuBar.prefWidthProperty().bind(pane.widthProperty());
 		
-		Menu menuFile = new Menu("File");
-		MenuItem exitMenuItem = new MenuItem("Exit");
+		menuFile = new Menu("File");
+		miExit = new MenuItem("Exit");
 		
-		Menu viewMenu = new Menu("View");
+		menuView = new Menu("View");
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
 		recoveriesItem = new MenuItem("Recoveries");
 		
-		pane.setTop(this.getMenuBar());
+		pane.setTop(this.getRoot());
 		
-		menuFile.getItems().add(exitMenuItem);
-		viewMenu.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(),
+		menuFile.getItems().add(miExit);
+		menuView.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(),
 				miDeaths, new SeparatorMenuItem(),
 				recoveriesItem);
 		
-		menuBar.getMenus().addAll(menuFile, viewMenu);
+		menuBar.getMenus().addAll(menuFile, menuView);
 		
 		chart = makeChart();
 		
@@ -48,7 +49,7 @@ public class MenuBox {
 		RecoveryBox bigRBox = new RecoveryBox();
 		VBox recoveryBox = bigRBox.getRecoveryBox();
 		
-		exitMenuItem.setOnAction(e -> {
+		miExit.setOnAction(e -> {
 			Platform.exit();
 		});
 		
@@ -65,7 +66,7 @@ public class MenuBox {
 		});
 	}
 	
-	public MenuBar getMenuBar() {
+	public MenuBar getRoot() {
 		return menuBar;
 	}
 	

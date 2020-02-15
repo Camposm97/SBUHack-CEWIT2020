@@ -12,7 +12,7 @@ public class App extends Application {
 	public void start(Stage stage) throws Exception {
 		BorderPane root = new BorderPane();
 		MenuBox menuBox = new MenuBox(root);
-		root.setTop(menuBox.getMenuBar());
+		root.setTop(menuBox.getRoot());
 		Scene scene = new Scene(root, 700, 600);
 		stage.setTitle("Coronavirus Graphs");
 		stage.setScene(scene);
