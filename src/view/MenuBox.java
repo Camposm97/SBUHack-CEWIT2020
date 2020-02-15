@@ -47,7 +47,7 @@ public class MenuBox {
 				"https://www.stjude.org/give.html?sc_dcm=254910812&sc_cid=kwp75674&source_code=IIQ190721002&ef_id=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE:G:s&s_kwcid=AL!4519!3!322242236868!b!!g!!%2Bdonate&gclid=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE",
 				"https://www.youtube.com/watch?v=dQw4w9WgXcQ"};
 		//Last url will be updated when source links are available
-		ExternalLink url = new ExternalLink();
+		//ExternalLink url = new ExternalLink();
 		
 		popup = new Alert(AlertType.INFORMATION);
 		popup.setTitle("About INSERT_APP_NAME_HERE");
@@ -94,19 +94,19 @@ public class MenuBox {
 			pane.setCenter(recoveryBox);
 		});
 		
-		miMichaelGH.setOnAction(e -> {url.openLink(urls[0]);});
-		
-		miKieferGH.setOnAction(e -> {url.openLink(urls[1]);});
-		
-		miChrisGH.setOnAction(e -> {url.openLink(urls[2]);});
-		
-		miJonathanGH.setOnAction(e -> {url.openLink(urls[3]);});
-		
-		miCDC.setOnAction(e -> {url.openLink(urls[4]);});
-		
-		miDonate.setOnAction(e -> {url.openLink(urls[5]);});
-		
-		miSources.setOnAction(e -> {url.openLink(urls[6]);});
+//		miMichaelGH.setOnAction(e -> {url.openLink(urls[0]);});
+//		
+//		miKieferGH.setOnAction(e -> {url.openLink(urls[1]);});
+//		
+//		miChrisGH.setOnAction(e -> {url.openLink(urls[2]);});
+//		
+//		miJonathanGH.setOnAction(e -> {url.openLink(urls[3]);});
+//		
+//		miCDC.setOnAction(e -> {url.openLink(urls[4]);});
+//		
+//		miDonate.setOnAction(e -> {url.openLink(urls[5]);});
+//		
+//		miSources.setOnAction(e -> {url.openLink(urls[6]);});
 		
 		miAbout.setOnAction(e -> {
 			popup.setContentText("This application tracks a disease, Coronavirus in this "
