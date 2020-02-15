@@ -1,5 +1,6 @@
 package view;
 
+import app.App;
 import javafx.application.Platform;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -19,8 +20,6 @@ public class MenuBox {
 	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries, miMichaelGH, miKieferGH, miChrisGH, miJonathanGH,
 			miCDC, miDonate, miSources, miAbout;
 	private LineChart chartConfirmed, chartDeath, chartRecovery;
-	private String[] urls;
-	private Alert popup;
 
 	public MenuBox(BorderPane pane) {
 		menuBar = new MenuBar();
@@ -43,10 +42,6 @@ public class MenuBox {
 		miDonate = new MenuItem("Donate");
 		miSources = new MenuItem("Sources");
 		miAbout = new MenuItem("About");
-
-		popup = new Alert(AlertType.INFORMATION);
-		popup.setTitle("About Corona Virus Tracker");
-		popup.setHeaderText(null);
 
 		pane.setTop(this.getRoot());
 
@@ -115,8 +110,12 @@ public class MenuBox {
 		});
 
 		miAbout.setOnAction(e -> {
-			popup.setContentText("This application plots coronavirus cases over time");
-			popup.showAndWait();
+			String content = "The purpose of this application is to track the corona virus.  Shows how effective it is at ending people.";
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle(App.TITLE);
+			alert.setHeaderText("About");
+			alert.setContentText(content);
+			alert.showAndWait();
 		});
 
 	}
