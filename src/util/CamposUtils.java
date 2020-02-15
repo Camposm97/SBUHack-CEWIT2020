@@ -5,10 +5,10 @@ import java.util.Arrays;
 
 public class CamposUtils {
 	public static void main(String[] args) {
-		File folder = new File("res/archived_data/daily_case_updates");
-		File[] arr = folder.listFiles();
+		String dir = "res/archived_data/daily_case_updates";
+		File[] arr = scanFiles(dir);
 		System.out.println(Arrays.toString(arr));
-		for(int i = 0; i < folder.length() - 1; i++) {
+		for(int i = 0; i < arr.length; i++) {
 			File file = arr[i];
 			if (file.isFile()) {
 				System.out.println(file.getName());			
