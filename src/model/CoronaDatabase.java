@@ -2,11 +2,11 @@ package model;
 
 import java.util.LinkedList;
 
-public class SavedCoronaData {
+public class CoronaDatabase {
 	private LinkedList<CoronaData> coronaDeaths;
 	private LinkedList<CoronaData> coronaRecovered;
 	private LinkedList<CoronaData> coronaConfirmed;
-	public SavedCoronaData(LinkedList<CoronaData> coronaDeaths, LinkedList<CoronaData> coronaRecovered,
+	public CoronaDatabase(LinkedList<CoronaData> coronaDeaths, LinkedList<CoronaData> coronaRecovered,
 			LinkedList<CoronaData> coronaConfirmed) {
 		super();
 		this.coronaDeaths = coronaDeaths;
