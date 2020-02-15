@@ -4,15 +4,21 @@ import java.io.File;
 import java.util.LinkedList;
 
 import model.CoronaVirusInfo;
+import util.CamposUtils;
 import util.DataImport;
 
 public class Demo {
 
 	public static void main(String[] args) {
 		LinkedList<CoronaVirusInfo> cvi;
-		File fileForCorona= new File("res/csse_covid_19_data/csse_covid_19_daily_reports/01-22-2020.csv");
-		cvi=DataImport.importCoronaData(fileForCorona);
-		System.out.println(cvi.get(2).getDeaths());
+		File[] arrayOfDates=CamposUtils.scanFiles("res/csse_covid_19_data/csse_covid_19_daily_reports");
+		//File fileForCorona= new File("res/csse_covid_19_data/csse_covid_19_daily_reports/01-22-2020.csv");
+		LinkedList<LinkedList> listOfCases = new LinkedList<>();
+		for (int i=0;i<arrayOfDates.length;i++) {
+			cvi=DataImport.importCoronaData(arrayOfDates[i]);
+			listOfCases.add(cvi);
+		}
+		
 	}
 
 }
