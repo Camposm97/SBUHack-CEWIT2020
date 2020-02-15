@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import model.CoronaDeathData;
+import model.CoronaData;
 import model.CoronaVirusInfo;
 import util.CamposUtils;
 import util.DataImport;
@@ -21,8 +21,11 @@ public class Demo {
 //			listOfCases.add(cvi);
 //		}
 //		System.out.println(listOfCases.get(3).get(3).getStateOrCountry());
-		LinkedList<CoronaDeathData> cdd=DataImport.importDeathData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
-		System.out.println(cdd.get(1).getNumberOfDeaths().get(3));
+		LinkedList<CoronaData> cdd=DataImport.importDeathData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
+		LinkedList<CoronaData> ccd=DataImport.importConfirmedData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
+		LinkedList<CoronaData> crd=DataImport.importRecoveredData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
+		System.out.println(cdd.get(1).getDeathsConfirmedOrRecovered());
+		System.out.println(crd.get(1).getDeathsConfirmedOrRecovered().get(3));
 	}
 
 }

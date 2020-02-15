@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import javax.net.ssl.HttpsURLConnection;
 
-import model.CoronaDeathData;
+import model.CoronaData;
 import model.CoronaVirusInfo;
 
 public class DataImport {
@@ -38,11 +38,11 @@ public class DataImport {
 		return theList;
 	}
 	
-	public static LinkedList<CoronaDeathData> importDeathData(String url1) throws IOException {
+	public static LinkedList<CoronaData> importDeathData(String url1) throws IOException {
 		String s = url1;
 		String inLine = "";
 		URL url = new URL(s);
-		LinkedList<CoronaDeathData> listCDD= new LinkedList<>();
+		LinkedList<CoronaData> listCDD= new LinkedList<>();
 		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
 		c.setRequestMethod("GET");
 		c.connect();
@@ -79,7 +79,105 @@ public class DataImport {
 					}
 					daysOfDeaths.add(numberOfDeaths);
 				}
-				CoronaDeathData cdd= new CoronaDeathData(provinceOrState,countryOrRegion,latitude,longitude,daysOfDeaths);
+				CoronaData cdd= new CoronaData(provinceOrState,countryOrRegion,latitude,longitude,daysOfDeaths);
+				listCDD.add(cdd);
+			}
+			return listCDD;
+		}
+		
+	}
+	
+	public static LinkedList<CoronaData> importConfirmedData(String url1) throws IOException {
+		String s = url1;
+		String inLine = "";
+		URL url = new URL(s);
+		LinkedList<CoronaData> listCDD= new LinkedList<>();
+		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
+		c.setRequestMethod("GET");
+		c.connect();
+		int responseCode = c.getResponseCode();
+		if (responseCode != VALID_RESPONSE_CODE) {
+			throw new RuntimeException("HttpResponseCode: " + responseCode);
+		} else {
+			System.out.println("Valid Response Code: " + responseCode);
+			Scanner sc = new Scanner(url.openStream());
+			sc.nextLine();
+			sc.nextLine();
+			while (sc.hasNextLine()) {
+				inLine = sc.nextLine().replaceAll(",", ", ");
+				String provinceOrState;
+				String countryOrRegion;
+				String latitude;
+				String longitude;
+				int numberOfConfirmed;
+				LinkedList<Integer> daysOfDeaths= new LinkedList<>();
+				String tokens[]=inLine.split(",");
+				if (inLine.charAt(0) == ',') {
+					provinceOrState = "none";
+				}else {
+					provinceOrState=tokens[0];
+				}
+				countryOrRegion=tokens[1];
+				latitude=tokens[2];
+				longitude=tokens[3];
+				for (int i=4;i<tokens.length;i++) {
+					if(tokens[i].equals(" ")) {
+						numberOfConfirmed=0;
+					}else {
+						numberOfConfirmed=(int)Double.parseDouble(tokens[i].trim());
+					}
+					daysOfDeaths.add(numberOfConfirmed);
+				}
+				CoronaData cdd= new CoronaData(provinceOrState,countryOrRegion,latitude,longitude,daysOfDeaths);
+				listCDD.add(cdd);
+			}
+			return listCDD;
+		}
+		
+	}
+	
+	public static LinkedList<CoronaData> importRecoveredData(String url1) throws IOException {
+		String s = url1;
+		String inLine = "";
+		URL url = new URL(s);
+		LinkedList<CoronaData> listCDD= new LinkedList<>();
+		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
+		c.setRequestMethod("GET");
+		c.connect();
+		int responseCode = c.getResponseCode();
+		if (responseCode != VALID_RESPONSE_CODE) {
+			throw new RuntimeException("HttpResponseCode: " + responseCode);
+		} else {
+			System.out.println("Valid Response Code: " + responseCode);
+			Scanner sc = new Scanner(url.openStream());
+			sc.nextLine();
+			sc.nextLine();
+			while (sc.hasNextLine()) {
+				inLine = sc.nextLine().replaceAll(",", ", ");
+				String provinceOrState;
+				String countryOrRegion;
+				String latitude;
+				String longitude;
+				int numberOfRecovered;
+				LinkedList<Integer> daysOfDeaths= new LinkedList<>();
+				String tokens[]=inLine.split(",");
+				if (inLine.charAt(0) == ',') {
+					provinceOrState = "none";
+				}else {
+					provinceOrState=tokens[0];
+				}
+				countryOrRegion=tokens[1];
+				latitude=tokens[2];
+				longitude=tokens[3];
+				for (int i=4;i<tokens.length;i++) {
+					if(tokens[i].equals(" ")) {
+						numberOfRecovered=0;
+					}else {
+						numberOfRecovered=(int)Double.parseDouble(tokens[i].trim());
+					}
+					daysOfDeaths.add(numberOfRecovered);
+				}
+				CoronaData cdd= new CoronaData(provinceOrState,countryOrRegion,latitude,longitude,daysOfDeaths);
 				listCDD.add(cdd);
 			}
 			return listCDD;

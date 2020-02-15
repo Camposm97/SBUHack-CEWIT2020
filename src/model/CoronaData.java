@@ -2,21 +2,21 @@ package model;
 
 import java.util.LinkedList;
 
-public class CoronaDeathData {
+public class CoronaData {
 	private String provinceOrState;
 	private String countryOrRegion;
 	private String latitude;
 	private String longitude;
-	private LinkedList<Integer> numberOfDeaths;
+	private LinkedList<Integer> deathsConfirmedOrRecovered;
 	
-	public CoronaDeathData(String provinceOrState, String countryOrRegion, String latitude, String longitude,
+	public CoronaData(String provinceOrState, String countryOrRegion, String latitude, String longitude,
 			LinkedList<Integer> numberOfDeaths) {
 		super();
 		this.provinceOrState = provinceOrState;
 		this.countryOrRegion = countryOrRegion;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.numberOfDeaths = numberOfDeaths;
+		this.deathsConfirmedOrRecovered = numberOfDeaths;
 	}
 	public String getProvinceOrState() {
 		return provinceOrState;
@@ -42,11 +42,11 @@ public class CoronaDeathData {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	public LinkedList<Integer> getNumberOfDeaths() {
-		return numberOfDeaths;
+	public LinkedList<Integer> getDeathsConfirmedOrRecovered() {
+		return deathsConfirmedOrRecovered;
 	}
-	public void setNumberOfDeaths(LinkedList<Integer> numberOfDeaths) {
-		this.numberOfDeaths = numberOfDeaths;
+	public void setDeathsConfirmedOrRecovered(LinkedList<Integer> numberOfDeaths) {
+		this.deathsConfirmedOrRecovered = numberOfDeaths;
 	}
 	
 	
