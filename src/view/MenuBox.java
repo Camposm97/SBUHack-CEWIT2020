@@ -23,7 +23,7 @@ public class MenuBox {
 	private MenuBar menuBar;
 	private Menu menuFile, menuView, menuHelp;
 	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries, miMichaelGH, 
-	miKieferGH, miChrisGH, miJonathanGH, miCDC, miSources, miAbout;
+	miKieferGH, miChrisGH, miJonathanGH, miCDC, miDonate, miSources, miAbout;
 	private LineChart chart;
 	private WebView browser = new WebView();
 	private WebEngine appBrowser = browser.getEngine();
@@ -44,6 +44,7 @@ public class MenuBox {
 		miChrisGH = new MenuItem("Chris's GitHub");
 		miJonathanGH = new MenuItem("Jonathan's GitHub");
 		miCDC = new MenuItem("CDC");
+		miDonate = new MenuItem("Donate");
 		miSources = new MenuItem("Sources");
 		miAbout = new MenuItem("About");
 		
