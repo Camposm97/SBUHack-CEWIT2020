@@ -17,7 +17,7 @@ public class MenuBox {
 	private Menu menuFile, menuView, menuHelp;
 	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries, miMichaelGH, 
 	miKieferGH, miChrisGH, miJonathanGH, miCDC, miDonate, miSources, miAbout;
-	private LineChart chart;
+	private LineChart chartConfirmed, chartDeath, chartRecovery;
 	private String[] urls;
 	private Alert popup;
 	
@@ -45,7 +45,8 @@ public class MenuBox {
 				"https://www.github.com/The3FacesOfSteve", "https://www.github.com/LemusJ27", 
 				"https://www.cdc.gov", 
 				"https://www.stjude.org/give.html?sc_dcm=254910812&sc_cid=kwp75674&source_code=IIQ190721002&ef_id=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE:G:s&s_kwcid=AL!4519!3!322242236868!b!!g!!%2Bdonate&gclid=EAIaIQobChMIh8G8k_HT5wIVibWzCh1pgQDmEAAYASAAEgLjCvD_BwE",
-				""};
+				"https://www.youtube.com/watch?v=dQw4w9WgXcQ"};
+		//Last url will be updated when source links are available
 		ExternalLink url = new ExternalLink();
 		
 		popup = new Alert(AlertType.INFORMATION);
@@ -65,13 +66,16 @@ public class MenuBox {
 		
 		menuBar.getMenus().addAll(menuFile, menuView, menuHelp);
 		
-		chart = makeChart();
+		chartConfirmed = makeChart();
+		chartDeath = makeChart();
+		chartRecovery = makeChart();
+
 		
-		ConfirmedBox bigCBox = new ConfirmedBox(chart);
+		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
-		DeathBox bigDBox = new DeathBox(chart);
+		DeathBox bigDBox = new DeathBox(chartDeath);
 		VBox deathBox = bigDBox.getDeathBox();
-		RecoveryBox bigRBox = new RecoveryBox(chart);
+		RecoveryBox bigRBox = new RecoveryBox(chartRecovery);
 		VBox recoveryBox = bigRBox.getRecoveryBox();
 		
 		miExit.setOnAction(e -> {

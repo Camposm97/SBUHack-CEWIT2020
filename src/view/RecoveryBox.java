@@ -29,7 +29,9 @@ public class RecoveryBox {
 		
 		//TO-DO: Write a loop to either read all data files or make a navigator to identify
 		//the day being analyzed
-		dataSet1.getData().add(new XYChart.Data(0, 1));
+		dataSet1.getData().add(new XYChart.Data(1, 1));
+		dataSet1.getData().add(new XYChart.Data(5, 10));
+		dataSet1.getData().add(new XYChart.Data(15, 251));
 		
 		chart.getData().add(dataSet1);
 		chart.setTitle("Recovery Cases");
