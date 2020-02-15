@@ -17,8 +17,7 @@ public class MenuBox {
 	private LineChart chart;
 	
 	public MenuBox(BorderPane pane) {
-		menuBar = new MenuBar();
-		
+		menuBar = new MenuBar();		
 		menuFile = new Menu("File");
 		miExit = new MenuItem("Exit");
 		

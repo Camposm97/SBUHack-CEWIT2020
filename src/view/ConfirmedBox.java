@@ -1,10 +1,18 @@
 package view;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Pos;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -32,7 +40,23 @@ public class ConfirmedBox {
 		chart.setTitle("Confirmed Cases");
 		chartBox = new VBox(chart);
 		
-		confirmedBox.getChildren().addAll(chartBox);
+		// Code by Michael
+		Button bt = new Button("Click");
+		bt.setOnAction(e -> {
+			WritableImage image = chart.snapshot(new SnapshotParameters(), null);
+		    
+		    // TODO: probably use a file chooser here
+		    File file = new File("chart.png");
+		    
+		    try {
+		        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+		    } catch (IOException ex) {
+		    	ex.printStackTrace();
+		    }
+		});
+		// End of Code by Michael
+		
+		confirmedBox.getChildren().addAll(chartBox, bt); // Changed by Michael
 	}
 	
 	public VBox getConfirmedBox() {
