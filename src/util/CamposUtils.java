@@ -5,11 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import app.App;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.Chart;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class CamposUtils {
@@ -23,12 +25,17 @@ public class CamposUtils {
 	}
 	
 	public static void saveGraph(Chart chart) {
-		WritableImage image = chart.snapshot(new SnapshotParameters(), null);	    
-	    File file = new FileChooser().showSaveDialog(new Stage());
-	    try {
-	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    } catch (IOException ex) {
-	    	ex.printStackTrace();
+		WritableImage image = chart.snapshot(new SnapshotParameters(), null);	   
+		FileChooser fc = new FileChooser();
+		fc.getExtensionFilters().add(new ExtensionFilter("PNG", ".png"));
+	    File file = fc.showSaveDialog(new Stage());
+	    if (file != null) {
+	    	try {
+		        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+		        AlertHelper.showInfo(App.TITLE, null, null);
+		    } catch (IOException ex) {
+		    	ex.printStackTrace();
+		    }
 	    }
 	}
 }
