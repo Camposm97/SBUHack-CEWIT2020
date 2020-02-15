@@ -18,19 +18,19 @@ public class DataImport {
 			in = null;
 			e.printStackTrace();
 		}
-		String province;
-		String stateOrCountry;
-		String lastUpdate;
-		int confirmedCases;
-		int deaths;
-		int recovered;
+		String province = null;
+		String stateOrCountry = null;
+		String lastUpdate = null;
+		int confirmedCases = 0;
+		int deaths = 0;
+		int recovered = 0;
 		while (in.hasNextLine()) {
 			String currentLine = in.nextLine();
 			String[] tokens = currentLine.split(",");
 			if (currentLine.charAt(0) == ',') {
 				province = "none";
 			}
-			if (currentLine.length() == 3) {
+			else if (tokens.length==3) {
 				province = tokens[0];
 				stateOrCountry = tokens[1];
 				lastUpdate = tokens[2];
@@ -38,7 +38,7 @@ public class DataImport {
 				deaths = 0;
 				recovered = 0;
 			}
-			if (currentLine.length() == 4) {
+			else if (tokens.length == 4) {
 				province = tokens[0];
 				stateOrCountry = tokens[1];
 				lastUpdate = tokens[2];
@@ -46,14 +46,15 @@ public class DataImport {
 				deaths = 0;
 				recovered = 0;
 			}
-			if (currentLine.length() == 5) {
+			else if (tokens.length == 5) {
 				province = tokens[0];
 				stateOrCountry = tokens[1];
 				lastUpdate = tokens[2];
 				confirmedCases = Integer.parseInt(tokens[3]);
 				deaths = Integer.parseInt(tokens[4]);
 				recovered = 0;
-			} else {
+			}
+			else if (tokens.length==6) {
 				province = tokens[0];
 				stateOrCountry = tokens[1];
 				lastUpdate = tokens[2];
