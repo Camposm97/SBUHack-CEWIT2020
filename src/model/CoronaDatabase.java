@@ -1,35 +1,41 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class CoronaDatabase {
-	private LinkedList<CoronaData> coronaDeaths;
-	private LinkedList<CoronaData> coronaRecovered;
-	private LinkedList<CoronaData> coronaConfirmed;
-	public CoronaDatabase(LinkedList<CoronaData> coronaDeaths, LinkedList<CoronaData> coronaRecovered,
-			LinkedList<CoronaData> coronaConfirmed) {
-		super();
+	private List<CoronaData> coronaDeaths;
+	private List<CoronaData> coronaRecovered;
+	private List<CoronaData> coronaConfirmed;
+
+	public CoronaDatabase(List<CoronaData> coronaDeaths, List<CoronaData> coronaRecovered,
+			List<CoronaData> coronaConfirmed) {
 		this.coronaDeaths = coronaDeaths;
 		this.coronaRecovered = coronaRecovered;
 		this.coronaConfirmed = coronaConfirmed;
 	}
-	public LinkedList<CoronaData> getCoronaDeaths() {
+
+	public List<CoronaData> getCoronaDeaths() {
 		return coronaDeaths;
 	}
-	public void setCoronaDeaths(LinkedList<CoronaData> coronaDeaths) {
+
+	public void setCoronaDeaths(List<CoronaData> coronaDeaths) {
 		this.coronaDeaths = coronaDeaths;
 	}
-	public LinkedList<CoronaData> getCoronaRecovered() {
+
+	public List<CoronaData> getCoronaRecovered() {
 		return coronaRecovered;
 	}
-	public void setCoronaRecovered(LinkedList<CoronaData> coronaRecovered) {
+
+	public void setCoronaRecovered(List<CoronaData> coronaRecovered) {
 		this.coronaRecovered = coronaRecovered;
 	}
-	public LinkedList<CoronaData> getCoronaConfirmed() {
+
+	public List<CoronaData> getCoronaConfirmed() {
 		return coronaConfirmed;
 	}
-	public void setCoronaConfirmed(LinkedList<CoronaData> coronaConfirmed) {
+
+	public void setCoronaConfirmed(List<CoronaData> coronaConfirmed) {
 		this.coronaConfirmed = coronaConfirmed;
 	}
-	
+
 }
