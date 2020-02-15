@@ -13,7 +13,7 @@ import model.CoronaData;
 import model.CoronaVirusInfo;
 import model.CoronaDatabase;
 
-public class DataImport {
+public class DataParser {
 	private static final int VALID_RESPONSE_CODE = 200;
 	public static LinkedList<CoronaVirusInfo> importCoronaData(File importFile) {
 		File f = importFile;
@@ -89,9 +89,9 @@ public class DataImport {
 	}
 	
 	public static CoronaDatabase importCorona() throws IOException {
-		LinkedList<CoronaData> cdd=DataImport.importDeathData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
-		LinkedList<CoronaData> ccd=DataImport.importConfirmedData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
-		LinkedList<CoronaData> crd=DataImport.importRecoveredData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
+		LinkedList<CoronaData> cdd=DataParser.importDeathData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
+		LinkedList<CoronaData> ccd=DataParser.importConfirmedData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
+		LinkedList<CoronaData> crd=DataParser.importRecoveredData("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
 		CoronaDatabase saveCorona= new CoronaDatabase(cdd,crd,ccd);
 		return saveCorona;
 	}
