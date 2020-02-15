@@ -22,7 +22,7 @@ public class CamposDemo {
 		} else {
 			System.out.println("Valid Response Code: " + responseCode);
 			Scanner sc = new Scanner(url.openStream());
-			while (sc.hasNext()) {
+			while (sc.hasNextLine()) {
 				inLine = sc.nextLine();
 				System.out.println(inLine.replaceAll(",", ", "));
 			}

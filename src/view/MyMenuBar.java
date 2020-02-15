@@ -12,30 +12,32 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import util.AlertHelper;
 import util.CamposWeb;
 
-public class MenuBox {
-	private MenuBar menuBar;
-	private Menu menuFile, menuView, menuHelp, menuDeveloper;
-	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries, miMichaelGH, miKieferGH, miChrisGH, miJonathanGH,
-			miCDC, miDonate, miSources, miAbout;
+public class MyMenuBar extends MenuBar {
+	private BorderPane root;
+	private Menu menuFile, menuView, menuHelp, menuGithub;
+	private MenuItem miExit, miConfirmedCases, miDeaths, miRecoveries;
+	private MenuItem miCDC, miDonate, miSources, miAbout;
 	private LineChart chartConfirmed, chartDeath, chartRecovery;
 
-	public MenuBox(BorderPane pane) {
-		menuBar = new MenuBar();
+	public MyMenuBar(BorderPane root) {
+		this.root = root;
+		initControls();
+		editControls();
+		this.getMenus().addAll(menuFile, menuView, menuHelp);
+	}
+
+	private void initControls() {
 		menuFile = new Menu("File");
 		miExit = new MenuItem("Exit");
-
 		menuView = new Menu("View");
+
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
 		miRecoveries = new MenuItem("Recoveries");
-		
-		menuDeveloper = new Menu("Developer's Github");
-		miMichaelGH = new MenuItem("Michael's GitHub");
-		miKieferGH = new MenuItem("Kiefer's GitHub");
-		miChrisGH = new MenuItem("Chris's GitHub");
-		miJonathanGH = new MenuItem("Jonathan's GitHub");
+		menuGithub = new MenuGithub();
 
 		menuHelp = new Menu("Help");
 		miCDC = new MenuItem("CDC");
@@ -43,21 +45,12 @@ public class MenuBox {
 		miSources = new MenuItem("Sources");
 		miAbout = new MenuItem("About");
 
-		pane.setTop(this.getRoot());
-
-		menuFile.getItems().add(miExit);
-		menuView.getItems().addAll(miConfirmedCases, new SeparatorMenuItem(), miDeaths, new SeparatorMenuItem(),
-				miRecoveries);
-		menuDeveloper.getItems().addAll(miMichaelGH, miKieferGH, miChrisGH, miJonathanGH);
-		menuHelp.getItems().addAll(menuDeveloper, new SeparatorMenuItem(), miCDC, new SeparatorMenuItem(),
-				miSources,new SeparatorMenuItem(), miDonate, new SeparatorMenuItem(), miAbout);
-
-		menuBar.getMenus().addAll(menuFile, menuView, menuHelp);
-
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
+	}
 
+	private void editControls() {
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
 		DeathBox bigDBox = new DeathBox(chartDeath);
@@ -70,31 +63,15 @@ public class MenuBox {
 		});
 
 		miConfirmedCases.setOnAction(e -> {
-			pane.setCenter(confirmedBox);
+			root.setCenter(confirmedBox);
 		});
 
 		miDeaths.setOnAction(e -> {
-			pane.setCenter(deathBox);
+			root.setCenter(deathBox);
 		});
 
 		miRecoveries.setOnAction(e -> {
-			pane.setCenter(recoveryBox);
-		});
-
-		miMichaelGH.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_MI);
-		});
-
-		miKieferGH.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_KIEFER);
-		});
-
-		miChrisGH.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_CHRIS);
-		});
-
-		miJonathanGH.setOnAction(e -> {
-			CamposWeb.browse(CamposWeb.GITHUB_LEMUS);
+			root.setCenter(recoveryBox);
 		});
 
 		miCDC.setOnAction(e -> {
@@ -111,17 +88,12 @@ public class MenuBox {
 
 		miAbout.setOnAction(e -> {
 			String content = "The purpose of this application is to track the corona virus.  Shows how effective it is at ending people.";
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle(App.TITLE);
-			alert.setHeaderText("About");
-			alert.setContentText(content);
-			alert.showAndWait();
+			AlertHelper.showInfo(App.TITLE, "About", content);
 		});
 
-	}
-
-	public MenuBar getRoot() {
-		return menuBar;
+		menuFile.getItems().add(miExit);
+		menuView.getItems().addAll(miConfirmedCases, miDeaths, miRecoveries);
+		menuHelp.getItems().addAll(menuGithub, miCDC, miSources, miDonate, miAbout);
 	}
 
 	public LineChart makeChart() {
