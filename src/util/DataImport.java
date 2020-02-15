@@ -24,6 +24,7 @@ public class DataImport {
 		int confirmedCases = 0;
 		int deaths = 0;
 		int recovered = 0;
+		in.nextLine();
 		while (in.hasNextLine()) {
 			String currentLine = in.nextLine();
 			String[] tokens = currentLine.split(",");
