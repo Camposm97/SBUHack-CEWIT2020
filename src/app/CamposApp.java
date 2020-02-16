@@ -10,6 +10,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.CoronaData;
@@ -23,7 +24,9 @@ public class CamposApp extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		CoronaDeathSearchPane root = new CoronaDeathSearchPane(db.getCoronaDeaths());
+		BorderPane root = new BorderPane();
+		CoronaDeathSearchPane pane = new CoronaDeathSearchPane(db.getCoronaDeaths());
+		root.setCenter(pane);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

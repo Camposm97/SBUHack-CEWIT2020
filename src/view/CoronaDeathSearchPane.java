@@ -57,7 +57,9 @@ public class CoronaDeathSearchPane extends BorderPane {
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("View Timeline");
 		mi1.setOnAction(e -> {
-			
+			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Death Cases", "Deaths");
+			BorderPane root = (BorderPane) this.getParent();
+			root.setCenter(box.getRoot());
 		});
 		cm.getItems().addAll(mi1);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
