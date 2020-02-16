@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import util.ImgUtil;
 
 public class MenuCorona extends Menu {
-	private MenuItem miConfirmedCases, miDeaths, miRecoveries, miTotals, miPieChart;
+	private MenuItem miConfirmedCases, miDeaths, miRecoveries, miTotals, miIndividualBarChart;
 	private LineChart chartConfirmed, chartDeath, chartRecovery;
 	
 	public MenuCorona(BorderPane root) {
@@ -31,16 +31,15 @@ public class MenuCorona extends Menu {
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
 		miRecoveries = new MenuItem("Recoveries");
-
-		miPieChart = new MenuItem("Pie Chart");
-
-miTotals = new MenuItem("Totals");
+		miTotals= new MenuItem("Global Totals");
+		miIndividualBarChart= new MenuItem("Individual Totals");
 		
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
 
 		TotalsBarSetup barSet = new TotalsBarSetup();
+		TotalsBarSetup individualBarSet= new TotalsBarSetup();
 		
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
@@ -48,9 +47,10 @@ miTotals = new MenuItem("Totals");
 		VBox deathBox = bigDBox.getDeathBox();
 		RecoveryBox bigRBox = new RecoveryBox(chartRecovery);
 		VBox recoveryBox = bigRBox.getRecoveryBox();
-
+		IndividualTotalBox iTB = new IndividualTotalBox(individualBarSet.getBarChart());
 		TotalsBox bigTBox = new TotalsBox(barSet.getBarChart());
 		HBox totalsBox = bigTBox.getTotalsBox();
+		HBox individualTotalBox= iTB.getTotalsBox();
 		
 		miConfirmedCases.setOnAction(e -> {
 			root.setCenter(new CoronaConfirmedSearchPane());
@@ -67,8 +67,11 @@ miTotals = new MenuItem("Totals");
 		miTotals.setOnAction(e -> {
 			root.setCenter(totalsBox);
 		});
+		miIndividualBarChart.setOnAction(e->{
+			root.setCenter(individualTotalBox);
+		});
 		
-		this.getItems().addAll(miConfirmedCases, miDeaths, miRecoveries, miTotals, miPieChart);
+		this.getItems().addAll(miConfirmedCases, miDeaths, miRecoveries, miTotals,miIndividualBarChart );
 		this.setGraphic(ImgUtil.loadImgVScale(ImgUtil.CORONAVIRUS_ICO,16.0,16.0));
 	}
 	

@@ -14,7 +14,7 @@ public class TotalsBarSetup {
 		xAxis = new CategoryAxis();
 		yAxis = new NumberAxis();
 		barSetup = new BarChart<String, Number>(xAxis, yAxis);
-		barSetup.setTitle("Total Cases");
+		barSetup.setTitle("Individual Region Cases");
 		xAxis.setLabel("Country/Region");
 		yAxis.setLabel("Cases");
 	}

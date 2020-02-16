@@ -31,6 +31,7 @@ public class MyMenuBar extends MenuBar {
 		menuCorona = new MenuCorona(root);
 		miExit.setGraphic(ImgUtil.loadImgV(ImgUtil.EXIT_ICO));
 		menuGithub = new MenuGithub();
+		menuGithub.setGraphic(ImgUtil.loadImgVScale(ImgUtil.GITHUB_ICO, 16, 16));
 		
 		
 		menuHelp = new Menu("Help");
