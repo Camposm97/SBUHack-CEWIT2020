@@ -8,6 +8,7 @@ import model.CoronaData;
 import model.CoronaDatabase;
 import util.DataParser;
 
+@Deprecated
 public class KieferApp {
 
 	public static void main(String[] args) throws IOException {

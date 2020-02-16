@@ -3,6 +3,7 @@ package view;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -21,7 +22,7 @@ import util.DataParser;
 public class ConfirmedBox {
 	private VBox confirmedBox;
 	private VBox chartBox;
-	private LinkedList<CoronaData> list;
+	private List<CoronaData> list;
 	private LinkedList<Integer> listConfirmed;
 	private CoronaDatabase coronaDataBase;
 	

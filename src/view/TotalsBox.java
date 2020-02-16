@@ -25,6 +25,7 @@ public class TotalsBox {
 	private Label title;
 	
 	public TotalsBox(BarChart totals) {
+
 		comparisonBox = new VBox();
 		comparisonBox.setAlignment(Pos.CENTER);
 		
