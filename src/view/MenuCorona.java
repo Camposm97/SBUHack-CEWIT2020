@@ -1,6 +1,14 @@
 package view;
 
+
+
 import java.io.IOException;
+
+import java.io.IOException;
+
+
+import java.io.IOException;
+
 
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -28,8 +36,17 @@ public class MenuCorona extends Menu {
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
-		TotalsBarSetup barSet = new TotalsBarSetup();
+
+		CategoryAxis totalsx = new CategoryAxis();
+		totalsx.setLabel("Region");
+		NumberAxis totalsy = new NumberAxis();
+		totalsy.setLabel("Cases");
+
+		BarChart<String, Number> chartTotals = new BarChart<String, Number>(totalsx, totalsy);	
+
 		
+		
+
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
 		DeathBox bigDBox = new DeathBox(chartDeath);
