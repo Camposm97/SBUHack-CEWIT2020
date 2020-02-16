@@ -9,11 +9,11 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.StackPane;
 import model.CoronaData;
 
-public class CoronaDeathPane extends StackPane {
+public class CoronaDeathSearchPane extends StackPane {
 	private List<CoronaData> deathList;
 	private TableView<CoronaData> tv;
 	
-	public CoronaDeathPane(List<CoronaData> deathList) {
+	public CoronaDeathSearchPane(List<CoronaData> deathList) {
 		this.deathList = deathList;
 		initTableView();
 	}
