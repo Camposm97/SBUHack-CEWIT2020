@@ -38,11 +38,11 @@ public class ConfirmedBox {
 		list = database.getCoronaDeaths();
 		
 		for (int i = 0; i < database.getCoronaDeaths().size(); i++) {
-			for (int j = 4; j < database.getCoronaDeaths().get(i).getDeathsConfirmedOrRecovered().size(); j++) {
-				database.getCoronaDeaths().get(j).getDeathsConfirmedOrRecovered().get(j);
+			for (int j = 4; j < database.getCoronaDeaths().get(i).getCountList().size(); j++) {
+				database.getCoronaDeaths().get(j).getCountList().get(j);
 //				XYChart.Series prevSet = new XYChart.Series<>();
 //				prevSet.getData().addAll(new XYChart.Data(j, list.get(j).getDeathsConfirmedOrRecovered().get(j)));
-				dataSet1.getData().addAll(new XYChart.Data(j, (list.get(j - 1).getDeathsConfirmedOrRecovered().get(j - 1) + list.get(j).getDeathsConfirmedOrRecovered().get(j))));
+				dataSet1.getData().addAll(new XYChart.Data(j, (list.get(j - 1).getCountList().get(j - 1) + list.get(j).getCountList().get(j))));
 //				prevSet = dataSet1;
 			}
 		}

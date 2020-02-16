@@ -37,21 +37,21 @@ public class TotalsBox {
 		XYChart.Series<Number, Number> seriesR = new XYChart.Series<>();
 
 		for(CoronaData corona: listC) {
-			LinkedList<Integer> countListC = corona.getDeathsConfirmedOrRecovered();
+			LinkedList<Integer> countListC = corona.getCountList();
 			for(int i=0; i<countListC.size(); i++) {
 				seriesC.getData().add(new Data<Number, Number>(i, countListC.get(i)));
 			}
 		}
 		
 		for(CoronaData corona: listD) {
-			LinkedList<Integer> countListD = corona.getDeathsConfirmedOrRecovered();
+			LinkedList<Integer> countListD = corona.getCountList();
 			for(int i=0; i<countListD.size(); i++) {
 				seriesD.getData().add(new Data<Number, Number>(i, countListD.get(i)));
 			}
 		}
 		
 		for(CoronaData corona: listR) {
-			LinkedList<Integer> countListR = corona.getDeathsConfirmedOrRecovered();
+			LinkedList<Integer> countListR = corona.getCountList();
 			for(int i=0; i<countListR.size(); i++) {
 				seriesR.getData().add(new Data<Number, Number>(i, countListR.get(i)));
 			}

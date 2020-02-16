@@ -63,7 +63,7 @@ public class CoronaDatabase {
 	public int getTotalDeaths() {
 		int count = 0;
 		for (CoronaData cd : coronaDeaths) {
-			count += cd.getDeathsConfirmedOrRecovered().getLast();
+			count += cd.getCountList().getLast();
 		}
 		return count;
 	}
@@ -71,7 +71,7 @@ public class CoronaDatabase {
 	public int getTotalRecovered() {
 		int count = 0;
 		for (CoronaData cd : coronaRecovered) {
-			count += cd.getDeathsConfirmedOrRecovered().getLast();
+			count += cd.getCountList().getLast();
 		}
 		return count;
 	}
@@ -79,7 +79,7 @@ public class CoronaDatabase {
 	public int getTotalConfirmed() {
 		int count = 0;
 		for (CoronaData cd : coronaConfirmed) {
-			count += cd.getDeathsConfirmedOrRecovered().getLast();
+			count += cd.getCountList().getLast();
 		}
 		return count;
 	}
