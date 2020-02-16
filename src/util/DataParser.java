@@ -14,6 +14,9 @@ import model.CoronaVirusInfo;
 import model.CoronaDatabase;
 
 public class DataParser {
+	private static final String TIME_SERIES_DEATHS_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv";
+	private static final String TIME_SERIES_CONFIRMED_2019 = "";
+	private static final String TIME_SERIES_RECOVERED_2019 = "";
 	private static final int VALID_RESPONSE_CODE = 200;
 
 	public static LinkedList<CoronaVirusInfo> importCoronaData(File importFile) {
@@ -92,7 +95,7 @@ public class DataParser {
 	public static CoronaDatabase importCorona() {
 		try {
 			LinkedList<CoronaData> cdd = DataParser.importDeathData(
-					"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
+					TIME_SERIES_DEATHS_2019);
 			LinkedList<CoronaData> ccd = DataParser.importConfirmedData(
 					"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
 			LinkedList<CoronaData> crd = DataParser.importRecoveredData(

@@ -56,7 +56,7 @@ public class CoronaDeathSearchPane extends BorderPane {
 		colCountry.setPrefWidth(WIDTH);
 
 		
-		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Death Count");
+		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Death Cases");
 		colLatestDeathCount.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("latestCount"));
 		colLatestDeathCount.setStyle(STYLE);
 		colLatestDeathCount.setPrefWidth(WIDTH);
