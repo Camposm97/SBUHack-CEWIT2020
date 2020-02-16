@@ -52,7 +52,7 @@ public class MenuCorona extends Menu {
 		HBox totalsBox = bigTBox.getTotalsBox();
 		
 		miConfirmedCases.setOnAction(e -> {
-			root.setCenter(new CoronaConfirmedSearchPane(App.DB.getCoronaConfirmed()));
+			root.setCenter(new CoronaConfirmedSearchPane());
 		});
 
 		miDeaths.setOnAction(e -> {
@@ -60,7 +60,7 @@ public class MenuCorona extends Menu {
 		});
 
 		miRecoveries.setOnAction(e -> {
-			root.setCenter(recoveryBox);
+			root.setCenter(new CoronaRecoveredSearchPane());
 		});
 		
 		miTotals.setOnAction(e -> {

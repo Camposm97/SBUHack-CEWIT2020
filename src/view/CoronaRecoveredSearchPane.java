@@ -3,21 +3,31 @@ package view;
 import java.awt.MouseInfo;
 import java.util.List;
 
+import app.App;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import model.CoronaData;
+import util.CamposUtils;
 
 public class CoronaRecoveredSearchPane extends BorderPane {
-	private List<CoronaData> coronaConfimedList;
+	private TextField tfSearch;
 	private TableView<CoronaData> tv;
 	
-	public CoronaRecoveredSearchPane(List<CoronaData> coronaDeathList) {
-		this.coronaConfimedList = coronaDeathList;
+	public CoronaRecoveredSearchPane() {
+		tfSearch = new TextField();
+		tfSearch.setPromptText("Enter Locale Here");
+		tfSearch.setOnAction(e -> {
+			List<CoronaData> resultList = App.DB.searchRecoveredByArea(tfSearch.getText());
+			tv.getItems().setAll(resultList);
+		});
 		initTableView();
+		super.setPadding(CamposUtils.DEFAULT_INSETS);
+		super.setTop(tfSearch);
 		super.setCenter(tv);
 	}
 	
@@ -30,26 +40,31 @@ public class CoronaRecoveredSearchPane extends BorderPane {
 				showContextMenu();
 			}
 		});
-		tv.getItems().setAll(coronaConfimedList);
 	}
 	
 	public void initTableColumns() {
+		final double WIDTH = 248;
 		final String STYLE = "-fx-alignment: CENTER;";
 		TableColumn<CoronaData, String> colState = new TableColumn<>("Province/State");
 		colState.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("provinceOrState"));
 		colState.setStyle(STYLE);
+		colState.setPrefWidth(WIDTH);
 
 		TableColumn<CoronaData, String> colCountry = new TableColumn<>("Country/Region");
 		colCountry.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("countryOrRegion"));
 		colCountry.setStyle(STYLE);
+		colCountry.setPrefWidth(WIDTH);
 
-		TableColumn<CoronaData, String> colLatestRecoveredCount = new TableColumn<>("Latest Recovered Cases Count");
-		colLatestRecoveredCount.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("latestCount"));
-		colLatestRecoveredCount.setStyle(STYLE);
+		
+		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Recovered Count");
+		colLatestDeathCount.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("latestCount"));
+		colLatestDeathCount.setStyle(STYLE);
+		colLatestDeathCount.setPrefWidth(WIDTH);
+
 
 		tv.getColumns().add(colState);
 		tv.getColumns().add(colCountry);
-		tv.getColumns().add(colLatestRecoveredCount);
+		tv.getColumns().add(colLatestDeathCount);
 	}
 	
 	private void showContextMenu() {
