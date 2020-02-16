@@ -4,33 +4,32 @@ import static util.CamposWeb.*;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import util.ImgUtil;
 
 public class MenuGithub extends Menu {
-	private MenuItem miMichaelGH, miKieferGH, miJonathanGH;
+	private MenuItem miMichaelGH, miKieferGH, miChrisGH, miJonathanGH;
 	
 	public MenuGithub() {
 		super("Developer's Github");
 		initMenus();
-		this.getItems().addAll(miMichaelGH, miKieferGH, miJonathanGH);
+		this.getItems().addAll(miMichaelGH, miKieferGH, miChrisGH, miJonathanGH);
 	}
 	
 	private void initMenus() {
 		miMichaelGH = new MenuItem("Michael's GitHub");
-		miMichaelGH.setGraphic(ImgUtil.loadImgVScale(ImgUtil.MIKE_ICO, 24, 24));
 		miKieferGH = new MenuItem("Kiefer's GitHub");
-//<<<<<<< HEAD
-//=======
-		miKieferGH.setGraphic(ImgUtil.loadImgVScale(ImgUtil.KIEFER_ICO, 40, 40));
-//>>>>>>> 40d64397013444d0b9ba149c40285e5f0cd82cf2
+		miChrisGH = new MenuItem("Chris' GitHub");
 		miJonathanGH = new MenuItem("Jonathan's GitHub");
-		miJonathanGH.setGraphic(ImgUtil.loadImgVScale(ImgUtil.JOHN_ICO, 24, 24));
+		
 		miMichaelGH.setOnAction(e -> {
 			browse(GITHUB_MI);
 		});
-		this.setGraphic(ImgUtil.loadImgV(ImgUtil.GITHUB_ICO));
+
 		miKieferGH.setOnAction(e -> {
 			browse(GITHUB_KIEFER);
+		});
+
+		miChrisGH.setOnAction(e -> {
+			browse(GITHUB_CHRIS);
 		});
 
 		miJonathanGH.setOnAction(e -> {
