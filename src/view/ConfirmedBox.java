@@ -26,7 +26,7 @@ public class ConfirmedBox {
 	private LinkedList<Integer> listConfirmed;
 	private CoronaDatabase coronaDataBase;
 	
-	public ConfirmedBox(LineChart chart) throws IOException {
+	public ConfirmedBox(LineChart chart) {
 		confirmedBox = new VBox();
 		confirmedBox.setAlignment(Pos.CENTER);
 		
