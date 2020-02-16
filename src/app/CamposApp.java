@@ -33,7 +33,7 @@ public class CamposApp extends Application {
 		LineChart<Number, Number> lc = new LineChart<>(xAxis, yAxis);
 		List<CoronaData> list = db.getCoronaDeaths();
 		for (CoronaData c : list) {
-			LinkedList<Integer> countList = c.getDeathsConfirmedOrRecovered();
+			LinkedList<Integer> countList = c.getCountList();
 			XYChart.Series<Number, Number> series = new XYChart.Series<>();
 			series.setName(c.getProvinceOrState());
 			
