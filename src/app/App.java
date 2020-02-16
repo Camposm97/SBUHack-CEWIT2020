@@ -4,10 +4,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.CoronaDatabase;
+import util.DataParser;
 import view.MyMenuBar;
 
 public class App extends Application {
 	public static final String TITLE = "Coronavirus Monitor";
+	public static final CoronaDatabase DB = DataParser.importCorona();
 	private BorderPane root;
 	private MyMenuBar menuBar;
 	
