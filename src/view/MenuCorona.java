@@ -1,10 +1,5 @@
 package view;
 
-<<<<<<< HEAD
-//>>>>>>> 9ae94d5f6f68f5ac5eb20acfe2c9a5a1294ede75
-=======
-
-
 import java.io.IOException;
 
 import app.App;
@@ -15,7 +10,6 @@ import java.io.IOException;
 import java.io.IOException;
 
 
->>>>>>> 32dda31e329b619e5aa069eddfa25ba620e6b70c
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
@@ -37,11 +31,10 @@ public class MenuCorona extends Menu {
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
 		miRecoveries = new MenuItem("Recoveries");
-<<<<<<< HEAD
+
 		miPieChart = new MenuItem("Pie Chart");
-=======
-		miTotals = new MenuItem("Totals");
->>>>>>> 32dda31e329b619e5aa069eddfa25ba620e6b70c
+
+miTotals = new MenuItem("Totals");
 		
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
@@ -55,15 +48,9 @@ public class MenuCorona extends Menu {
 		VBox deathBox = bigDBox.getDeathBox();
 		RecoveryBox bigRBox = new RecoveryBox(chartRecovery);
 		VBox recoveryBox = bigRBox.getRecoveryBox();
-<<<<<<< HEAD
-		TotalsBox bigTBox = new TotalsBox(chartTotals);
-		VBox totalsBox = bigTBox.getTotalsBox();
-		PieChartBox bigPBox = new PieChartBox();
-		VBox pieChartBox = bigPBox.getPieChartBox();
-=======
+
 		TotalsBox bigTBox = new TotalsBox(barSet.getBarChart());
 		HBox totalsBox = bigTBox.getTotalsBox();
->>>>>>> 32dda31e329b619e5aa069eddfa25ba620e6b70c
 		
 		miConfirmedCases.setOnAction(e -> {
 			root.setCenter(new CoronaConfirmedSearchPane());
@@ -79,10 +66,6 @@ public class MenuCorona extends Menu {
 		
 		miTotals.setOnAction(e -> {
 			root.setCenter(totalsBox);
-		});
-		
-		miPieChart.setOnAction(e -> {
-			root.setCenter(pieChartBox);
 		});
 		
 		this.getItems().addAll(miConfirmedCases, miDeaths, miRecoveries, miTotals, miPieChart);
