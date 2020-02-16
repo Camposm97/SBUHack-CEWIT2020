@@ -29,7 +29,11 @@ public class MenuCorona extends Menu {
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
-		chartTotals = new BarChart(new NumberAxis("Days", 0, 0, 0), new NumberAxis("Cases", 0, 0, 0));
+		NumberAxis totalsx = new NumberAxis();
+		totalsx.setLabel("Days");
+		NumberAxis totalsy = new NumberAxis();
+		totalsy.setLabel("Cases");
+		chartTotals = new BarChart(totalsx, totalsy);
 		
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
