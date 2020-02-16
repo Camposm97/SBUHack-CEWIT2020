@@ -1,11 +1,14 @@
 package app;
 
+import static util.ImgUtil.*;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.CoronaDatabase;
 import util.DataParser;
+import util.ImgUtil;
 import view.MyMenuBar;
 
 public class App extends Application {
@@ -21,6 +24,7 @@ public class App extends Application {
 		menuBar = new MyMenuBar(root);
 		root.setTop(menuBar);
 		stage.setTitle(TITLE);
+		stage.getIcons().add(ImgUtil.loadImg(ImgUtil.APP_ICO));
 		stage.setScene(new Scene(root, WIDTH, HEIGHT));
 		stage.show();
 	}
