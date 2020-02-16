@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import util.ImgUtil;
 
@@ -37,16 +38,8 @@ public class MenuCorona extends Menu {
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
 
-		CategoryAxis totalsx = new CategoryAxis();
-		totalsx.setLabel("Region");
-		NumberAxis totalsy = new NumberAxis();
-		totalsy.setLabel("Cases");
-
-		BarChart<String, Number> chartTotals = new BarChart<String, Number>(totalsx, totalsy);	
-
+		TotalsBarSetup barSet = new TotalsBarSetup();
 		
-		
-
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
 		DeathBox bigDBox = new DeathBox(chartDeath);
@@ -54,7 +47,7 @@ public class MenuCorona extends Menu {
 		RecoveryBox bigRBox = new RecoveryBox(chartRecovery);
 		VBox recoveryBox = bigRBox.getRecoveryBox();
 		TotalsBox bigTBox = new TotalsBox(barSet.getBarChart());
-		VBox totalsBox = bigTBox.getTotalsBox();
+		HBox totalsBox = bigTBox.getTotalsBox();
 		
 		miConfirmedCases.setOnAction(e -> {
 			root.setCenter(confirmedBox);
