@@ -3,20 +3,20 @@ package util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.Scanner;
+
 import javax.net.ssl.HttpsURLConnection;
 
 import model.CoronaData;
-import model.CoronaVirusInfo;
 import model.CoronaDatabase;
+import model.CoronaVirusInfo;
 
 public class DataParser {
 	private static final String TIME_SERIES_DEATHS_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv";
-	private static final String TIME_SERIES_CONFIRMED_2019 = "";
-	private static final String TIME_SERIES_RECOVERED_2019 = "";
+	private static final String TIME_SERIES_CONFIRMED_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
+	private static final String TIME_SERIES_RECOVERED_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv";
 	private static final int VALID_RESPONSE_CODE = 200;
 
 	public static LinkedList<CoronaVirusInfo> importCoronaData(File importFile) {
@@ -66,17 +66,17 @@ public class DataParser {
 				int numberOfDeaths;
 				LinkedList<Integer> daysOfDeaths = new LinkedList<>();
 				String tokens[] = currentLine.split(",");
-				
+
 				if (currentLine.charAt(0) == ',') {
 					provinceOrState = "none";
 				} else {
 					provinceOrState = tokens[0];
 				}
-				
+
 				countryOrRegion = tokens[1];
 				latitude = tokens[2];
 				longitude = tokens[3];
-				
+
 				for (int i = 4; i < tokens.length; i++) {
 					if (tokens[i].equals(" ")) {
 						numberOfDeaths = 0;
@@ -85,7 +85,7 @@ public class DataParser {
 					}
 					daysOfDeaths.add(numberOfDeaths);
 				}
-				
+
 				CoronaData cdd = new CoronaData(provinceOrState, countryOrRegion, latitude, longitude, daysOfDeaths);
 				listCDD.add(cdd);
 			}
@@ -95,13 +95,13 @@ public class DataParser {
 
 	}
 
-	public static CoronaDatabase importCorona() {
+	public static CoronaDatabase importCoronaDB() {
 		try {
 			LinkedList<CoronaData> cdd = DataParser.importDeathData(TIME_SERIES_DEATHS_2019);
 			LinkedList<CoronaData> ccd = DataParser.importConfirmedData(TIME_SERIES_CONFIRMED_2019);
 			LinkedList<CoronaData> crd = DataParser.importRecoveredData(TIME_SERIES_RECOVERED_2019);
-			CoronaDatabase saveCorona = new CoronaDatabase(cdd, crd, ccd);
-			return saveCorona;
+			CoronaDatabase db = new CoronaDatabase(cdd, crd, ccd);
+			return db;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -152,6 +152,7 @@ public class DataParser {
 				CoronaData cdd = new CoronaData(provinceOrState, countryOrRegion, latitude, longitude, daysOfDeaths);
 				listCDD.add(cdd);
 			}
+			sc.close();
 			return listCDD;
 		}
 
@@ -159,7 +160,7 @@ public class DataParser {
 
 	public static LinkedList<CoronaData> importRecoveredData(String url1) throws IOException {
 		String s = url1;
-		String inLine = "";
+		String currentLine = "";
 		URL url = new URL(s);
 		LinkedList<CoronaData> listCDD = new LinkedList<>();
 		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
@@ -173,17 +174,16 @@ public class DataParser {
 			Scanner sc = new Scanner(url.openStream());
 			sc.nextLine();
 			sc.nextLine();
-			String currentLine;
 			while (sc.hasNextLine()) {
-				inLine = editCommas(sc.nextLine());
+				currentLine = editCommas(sc.nextLine());
 				String provinceOrState;
 				String countryOrRegion;
 				String latitude;
 				String longitude;
 				int numberOfRecovered;
 				LinkedList<Integer> daysOfDeaths = new LinkedList<>();
-				String tokens[] = inLine.split(",");
-				if (inLine.charAt(0) == ',') {
+				String tokens[] = currentLine.split(",");
+				if (currentLine.charAt(0) == ',') {
 					provinceOrState = "none";
 				} else {
 					provinceOrState = tokens[0];
@@ -202,6 +202,7 @@ public class DataParser {
 				CoronaData cdd = new CoronaData(provinceOrState, countryOrRegion, latitude, longitude, daysOfDeaths);
 				listCDD.add(cdd);
 			}
+			sc.close();
 			return listCDD;
 		}
 

@@ -9,7 +9,7 @@ import util.DataParser;
 public class Demo {
 
 	public static void main(String[] args) throws IOException {
-		CoronaDatabase coronaDb = DataParser.importCorona();
+		CoronaDatabase coronaDb = DataParser.importCoronaDB();
 		System.out.println(coronaDb.getCoronaConfirmed().get(10).getCountList());
 	}
 

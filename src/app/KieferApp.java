@@ -18,7 +18,7 @@ public class KieferApp {
 
 	}
 	public static List<CoronaData> findByArea(String area) throws IOException {
-		CoronaDatabase coronaDatabase= DataParser.importCorona();
+		CoronaDatabase coronaDatabase= DataParser.importCoronaDB();
 		List<CoronaData> list = coronaDatabase.getCoronaConfirmed();
 		List<CoronaData> resultList = new LinkedList<>();
 		for (int i = 0; i < list.size(); i++) {

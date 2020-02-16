@@ -66,7 +66,7 @@ public class CamposApp extends Application {
 	}
 
 	public static void main(String[] args) throws IOException {
-		db = DataParser.importCorona();
+		db = DataParser.importCoronaDB();
 		launch();
 	}
 }

@@ -34,7 +34,7 @@ public class ConfirmedBox {
 		XYChart.Series dataSet1 = new XYChart.Series<>();
 		dataSet1.setName("Confirmed Cases");
 		
-		CoronaDatabase database = DataParser.importCorona();
+		CoronaDatabase database = DataParser.importCoronaDB();
 		list = database.getCoronaDeaths();
 		
 		for (int i = 0; i < database.getCoronaDeaths().size(); i++) {
