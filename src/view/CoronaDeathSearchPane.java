@@ -14,13 +14,13 @@ import model.CoronaData;
 public class CoronaDeathSearchPane extends BorderPane {
 	private List<CoronaData> coronaDeathList;
 	private TableView<CoronaData> tv;
-	
+
 	public CoronaDeathSearchPane(List<CoronaData> coronaDeathList) {
 		this.coronaDeathList = coronaDeathList;
 		initTableView();
 		super.setCenter(tv);
 	}
-	
+
 	private void initTableView() {
 		tv = new TableView<>();
 		initTableColumns();
@@ -32,7 +32,7 @@ public class CoronaDeathSearchPane extends BorderPane {
 		});
 		tv.getItems().setAll(coronaDeathList);
 	}
-	
+
 	public void initTableColumns() {
 		final String STYLE = "-fx-alignment: CENTER;";
 		TableColumn<CoronaData, String> colState = new TableColumn<>("Province/State");
@@ -51,16 +51,18 @@ public class CoronaDeathSearchPane extends BorderPane {
 		tv.getColumns().add(colCountry);
 		tv.getColumns().add(colLatestDeathCount);
 	}
-	
+
 	private void showContextMenu() {
 		CoronaData cd = tv.getSelectionModel().getSelectedItem();
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("View Timeline");
-		MenuItem mi2 = new MenuItem("View Totals");
-		cm.getItems().addAll(mi1, mi2);
+		mi1.setOnAction(e -> {
+			
+		});
+		cm.getItems().addAll(mi1);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
 		cm.show(getScene().getWindow(), x, y);
 	}
-	
+
 }
