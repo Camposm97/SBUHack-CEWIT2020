@@ -3,24 +3,26 @@ package view;
 import java.awt.MouseInfo;
 import java.util.List;
 
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import model.CoronaData;
 
 public class CoronaDeathSearchPane extends BorderPane {
 	private List<CoronaData> coronaDeathList;
 	private TableView<CoronaData> tv;
-
+	
 	public CoronaDeathSearchPane(List<CoronaData> coronaDeathList) {
 		this.coronaDeathList = coronaDeathList;
 		initTableView();
 		super.setCenter(tv);
 	}
-
+	
 	private void initTableView() {
 		tv = new TableView<>();
 		initTableColumns();
@@ -32,7 +34,7 @@ public class CoronaDeathSearchPane extends BorderPane {
 		});
 		tv.getItems().setAll(coronaDeathList);
 	}
-
+	
 	public void initTableColumns() {
 		final String STYLE = "-fx-alignment: CENTER;";
 		TableColumn<CoronaData, String> colState = new TableColumn<>("Province/State");
@@ -51,20 +53,15 @@ public class CoronaDeathSearchPane extends BorderPane {
 		tv.getColumns().add(colCountry);
 		tv.getColumns().add(colLatestDeathCount);
 	}
-
+	
 	private void showContextMenu() {
 		CoronaData cd = tv.getSelectionModel().getSelectedItem();
 		ContextMenu cm = new ContextMenu();
-		MenuItem mi1 = new MenuItem("View Timeline");
-		mi1.setOnAction(e -> {
-			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Death Cases", "Deaths");
-			BorderPane root = (BorderPane) this.getParent();
-			root.setCenter(box.getRoot());
-		});
-		cm.getItems().addAll(mi1);
+	
+//		cm.getItems().addAll(mi1, mi2);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
 		cm.show(getScene().getWindow(), x, y);
 	}
-
+	
 }

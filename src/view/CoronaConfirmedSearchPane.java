@@ -4,6 +4,7 @@ import java.awt.MouseInfo;
 import java.util.List;
 
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,6 +18,7 @@ public class CoronaConfirmedSearchPane extends BorderPane {
 	public CoronaConfirmedSearchPane(List<CoronaData> coronaDeathList) {
 		this.coronaConfimedList = coronaDeathList;
 		initTableView();
+		super.setCenter(tv);
 	}
 	
 	private void initTableView() {
@@ -53,7 +55,12 @@ public class CoronaConfirmedSearchPane extends BorderPane {
 	private void showContextMenu() {
 		CoronaData cd = tv.getSelectionModel().getSelectedItem();
 		ContextMenu cm = new ContextMenu();
-	
+		MenuItem miTimeline= new MenuItem();
+		miTimeline.setOnAction(e->{
+			
+		});
+		cm.getItems().addAll(miTimeline);
+		
 //		cm.getItems().addAll(mi1, mi2);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
