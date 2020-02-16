@@ -25,7 +25,7 @@ public class CamposApp extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		BorderPane root = new BorderPane();
-		CoronaDeathSearchPane pane = new CoronaDeathSearchPane(db.getCoronaDeaths());
+		CoronaDeathSearchPane pane = new CoronaDeathSearchPane();
 		root.setCenter(pane);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);

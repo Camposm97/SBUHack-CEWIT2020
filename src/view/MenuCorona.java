@@ -4,6 +4,8 @@ package view;
 
 import java.io.IOException;
 
+import app.App;
+
 import java.io.IOException;
 
 
@@ -50,11 +52,11 @@ public class MenuCorona extends Menu {
 		HBox totalsBox = bigTBox.getTotalsBox();
 		
 		miConfirmedCases.setOnAction(e -> {
-			root.setCenter(confirmedBox);
+			root.setCenter(new CoronaConfirmedSearchPane(App.DB.getCoronaConfirmed()));
 		});
 
 		miDeaths.setOnAction(e -> {
-			root.setCenter(deathBox);
+			root.setCenter(new CoronaDeathSearchPane());
 		});
 
 		miRecoveries.setOnAction(e -> {

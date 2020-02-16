@@ -3,21 +3,31 @@ package view;
 import java.awt.MouseInfo;
 import java.util.List;
 
+import app.App;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import model.CoronaData;
+import util.CamposUtils;
 
 public class CoronaDeathSearchPane extends BorderPane {
-	private List<CoronaData> coronaDeathList;
+	private TextField tfSearch;
 	private TableView<CoronaData> tv;
 	
-	public CoronaDeathSearchPane(List<CoronaData> coronaDeathList) {
-		this.coronaDeathList = coronaDeathList;
+	public CoronaDeathSearchPane() {
+		tfSearch = new TextField();
+		tfSearch.setPromptText("Enter Locale Here");
+		tfSearch.setOnAction(e -> {
+			List<CoronaData> resultList = App.DB.searchDeathsByArea(tfSearch.getText());
+			tv.getItems().setAll(resultList);
+		});
 		initTableView();
+		super.setPadding(CamposUtils.DEFAULT_INSETS);
+		super.setTop(tfSearch);
 		super.setCenter(tv);
 	}
 	
@@ -30,22 +40,27 @@ public class CoronaDeathSearchPane extends BorderPane {
 				showContextMenu();
 			}
 		});
-		tv.getItems().setAll(coronaDeathList);
 	}
 	
 	public void initTableColumns() {
+		final double WIDTH = 248;
 		final String STYLE = "-fx-alignment: CENTER;";
 		TableColumn<CoronaData, String> colState = new TableColumn<>("Province/State");
 		colState.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("provinceOrState"));
 		colState.setStyle(STYLE);
+		colState.setPrefWidth(WIDTH);
 
 		TableColumn<CoronaData, String> colCountry = new TableColumn<>("Country/Region");
 		colCountry.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("countryOrRegion"));
 		colCountry.setStyle(STYLE);
+		colCountry.setPrefWidth(WIDTH);
 
+		
 		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Death Count");
 		colLatestDeathCount.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("latestCount"));
 		colLatestDeathCount.setStyle(STYLE);
+		colLatestDeathCount.setPrefWidth(WIDTH);
+
 
 		tv.getColumns().add(colState);
 		tv.getColumns().add(colCountry);
@@ -57,7 +72,7 @@ public class CoronaDeathSearchPane extends BorderPane {
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("View Timeline");
 		mi1.setOnAction(e -> {
-			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Death Cases", "Deaths");
+			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Death Cases", "Death Cases");
 			BorderPane root = (BorderPane) this.getParent();
 			root.setCenter(box.getRoot());
 		});
