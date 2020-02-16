@@ -18,24 +18,24 @@ public class CoronaDatabase {
 		return coronaDeaths;
 	}
 
-	public void setCoronaDeaths(List<CoronaData> coronaDeaths) {
-		this.coronaDeaths = coronaDeaths;
-	}
-
 	public List<CoronaData> getCoronaRecovered() {
 		return coronaRecovered;
-	}
-
-	public void setCoronaRecovered(List<CoronaData> coronaRecovered) {
-		this.coronaRecovered = coronaRecovered;
 	}
 
 	public List<CoronaData> getCoronaConfirmed() {
 		return coronaConfirmed;
 	}
-
-	public void setCoronaConfirmed(List<CoronaData> coronaConfirmed) {
-		this.coronaConfirmed = coronaConfirmed;
+	
+	public int getTotalDeaths() {
+		return 0;
+	}
+	
+	public int getTotalRecovered() {
+		return 0;
+	}
+	
+	public int getTotalConfirmed() {
+		return 0;
 	}
 
 	public void display() {
