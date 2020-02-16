@@ -11,6 +11,7 @@ import view.MyMenuBar;
 public class App extends Application {
 	public static final String TITLE = "Coronavirus Monitor";
 	public static final CoronaDatabase DB = DataParser.importCorona();
+	private static final double WIDTH = 800, HEIGHT = 700;
 	private BorderPane root;
 	private MyMenuBar menuBar;
 	
@@ -20,11 +21,11 @@ public class App extends Application {
 		menuBar = new MyMenuBar(root);
 		root.setTop(menuBar);
 		stage.setTitle(TITLE);
-		stage.setScene(new Scene(root, 800, 600));
+		stage.setScene(new Scene(root, WIDTH, HEIGHT));
 		stage.show();
 	}
 	
 	public static void main(String[] args) {
-		launch(args);
+		Application.launch(args);
 	}
 }
