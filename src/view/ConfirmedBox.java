@@ -2,6 +2,8 @@ package view;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -13,28 +15,49 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.VBox;
+import model.CoronaData;
+import model.CoronaDatabase;
+import util.DataParser;
 
 public class ConfirmedBox {
 	private VBox confirmedBox;
 	private VBox chartBox;
+	private List<CoronaData> list;
+	private LinkedList<Integer> listConfirmed;
+	private CoronaDatabase coronaDataBase;
 	
-	public ConfirmedBox(LineChart chart) {
+	public ConfirmedBox(LineChart chart) throws IOException {
 		confirmedBox = new VBox();
 		confirmedBox.setAlignment(Pos.CENTER);
 		
 		chart.getYAxis().setLabel("Confirmed Cases");
-		
 		XYChart.Series dataSet1 = new XYChart.Series<>();
 		dataSet1.setName("Confirmed Cases");
 		
+		CoronaDatabase database = DataParser.importCorona();
+		list = database.getCoronaDeaths();
+		
+		for (int i = 0; i < database.getCoronaDeaths().size(); i++) {
+			for (int j = 4; j < database.getCoronaDeaths().get(i).getDeathsConfirmedOrRecovered().size(); j++) {
+				database.getCoronaDeaths().get(j).getDeathsConfirmedOrRecovered().get(j);
+//				XYChart.Series prevSet = new XYChart.Series<>();
+//				prevSet.getData().addAll(new XYChart.Data(j, list.get(j).getDeathsConfirmedOrRecovered().get(j)));
+				dataSet1.getData().addAll(new XYChart.Data(j, (list.get(j - 1).getDeathsConfirmedOrRecovered().get(j - 1) + list.get(j).getDeathsConfirmedOrRecovered().get(j))));
+//				prevSet = dataSet1;
+			}
+		}
+//		for (int i = 4; i < listConfirmed.size(); i++) {
+//			dataSet1.getData().add(new XYChart.Data(i, database.getCoronaConfirmed().get(i).getDeathsConfirmedOrRecovered().get(4)));
+//		}
+		
 		//TO-DO: Write a loop to either read all data files or make a navigator to identify
 		//the day being analyzed
-		dataSet1.getData().add(new XYChart.Data(0, 1));
-		dataSet1.getData().add(new XYChart.Data(1, 3));
-		dataSet1.getData().add(new XYChart.Data(2, 5));
-		dataSet1.getData().add(new XYChart.Data(3, 19));
-		dataSet1.getData().add(new XYChart.Data(4, 54));
-		dataSet1.getData().add(new XYChart.Data(5, 286));
+//		dataSet1.getData().add(new XYChart.Data(0, 1));
+//		dataSet1.getData().add(new XYChart.Data(1, 3));
+//		dataSet1.getData().add(new XYChart.Data(2, 5));
+//		dataSet1.getData().add(new XYChart.Data(3, 19));
+//		dataSet1.getData().add(new XYChart.Data(4, 54));
+//		dataSet1.getData().add(new XYChart.Data(5, 286));
 		
 		chart.getData().add(dataSet1);
 		chart.setTitle("Confirmed Cases");

@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -14,7 +15,7 @@ public class MenuCorona extends Menu {
 	private LineChart chartConfirmed, chartDeath, chartRecovery;
 	private BarChart chartTotals;
 	
-	public MenuCorona(BorderPane root) {
+	public MenuCorona(BorderPane root) throws IOException {
 		super("Coronavirus");
 		
 		miConfirmedCases = new MenuItem("Confirmed Cases");
@@ -24,7 +25,11 @@ public class MenuCorona extends Menu {
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
-		chartTotals = new BarChart(new NumberAxis("Days", 0, 0, 0), new NumberAxis("Cases", 0, 0, 0));
+		NumberAxis totalsx = new NumberAxis();
+		totalsx.setLabel("Days");
+		NumberAxis totalsy = new NumberAxis();
+		totalsy.setLabel("Cases");
+		chartTotals = new BarChart(totalsx, totalsy);
 		
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import app.App;
 import javafx.geometry.Pos;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -18,34 +19,49 @@ import util.DataParser;
 
 public class TotalsBox {
 	
-	private CoronaDatabase database;
 	private VBox comparisonBox;
 	private VBox box2;
 	private HBox boxs;
 	private Label title;
 	
 	public TotalsBox(BarChart totals) {
+<<<<<<< HEAD
 		database = DataParser.importCorona();
 		database.display();
+=======
+>>>>>>> cc4cb49ce15175ec14abbf806ab7842a44a73e7b
 		comparisonBox = new VBox();
 		comparisonBox.setAlignment(Pos.CENTER);
 		
-		totals.getXAxis().setLabel("Day");
-		totals.getYAxis().setLabel("Cases");
-		
-		List<CoronaData> listC = database.getCoronaConfirmed();
+		List<CoronaData> listC = App.DB.getCoronaConfirmed();
+		List<CoronaData> listD = App.DB.getCoronaDeaths();
+		List<CoronaData> listR = App.DB.getCoronaRecovered();
+		XYChart.Series<Number, Number> seriesC = new XYChart.Series<>();
+		XYChart.Series<Number, Number> seriesD = new XYChart.Series<>();
+		XYChart.Series<Number, Number> seriesR = new XYChart.Series<>();
+
 		for(CoronaData corona: listC) {
-			LinkedList<Integer> countList = corona.getDeathsConfirmedOrRecovered();
-			XYChart.Series<Number, Number> series = new XYChart.Series<>();
-			for(int i=0; i<countList.size(); i++) {
-				series.getData().add(new Data<Number, Number>(i, countList.get(i)));
+			LinkedList<Integer> countListC = corona.getDeathsConfirmedOrRecovered();
+			for(int i=0; i<countListC.size(); i++) {
+				seriesC.getData().add(new Data<Number, Number>(i, countListC.get(i)));
 			}
 		}
 		
-		XYChart.Series confirmedSet = new XYChart.Series<>();
+		for(CoronaData corona: listD) {
+			LinkedList<Integer> countListD = corona.getDeathsConfirmedOrRecovered();
+			for(int i=0; i<countListD.size(); i++) {
+				seriesD.getData().add(new Data<Number, Number>(i, countListD.get(i)));
+			}
+		}
 		
-		//TO-DO: Write a loop to either read all data files or make a navigator to identify
-		//the day being analyzed
+		for(CoronaData corona: listR) {
+			LinkedList<Integer> countListR = corona.getDeathsConfirmedOrRecovered();
+			for(int i=0; i<countListR.size(); i++) {
+				seriesR.getData().add(new Data<Number, Number>(i, countListR.get(i)));
+			}
+		}
+
+		
 	}
 	
 	public VBox getTotalsBox() {
