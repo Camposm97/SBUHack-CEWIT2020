@@ -25,11 +25,7 @@ public class TotalsBox {
 	private Label title;
 	
 	public TotalsBox(BarChart totals) {
-<<<<<<< HEAD
-		database = DataParser.importCorona();
-		database.display();
-=======
->>>>>>> cc4cb49ce15175ec14abbf806ab7842a44a73e7b
+
 		comparisonBox = new VBox();
 		comparisonBox.setAlignment(Pos.CENTER);
 		
