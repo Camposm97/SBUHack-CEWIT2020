@@ -1,5 +1,6 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class CoronaDatabase {
@@ -24,6 +25,39 @@ public class CoronaDatabase {
 
 	public List<CoronaData> getCoronaConfirmed() {
 		return coronaConfirmed;
+	}
+	
+	public List<CoronaData> searchDeathsByArea(String key) {
+		List<CoronaData> resultList = new LinkedList<>();
+		for (int i = 0; i < coronaDeaths.size(); i++) {
+			if (coronaDeaths.get(i).getCountryOrRegion().toLowerCase().contains(key.toLowerCase()) ||
+					coronaDeaths.get(i).getProvinceOrState().toLowerCase().contains(key.toLowerCase())) {
+				resultList.add(coronaDeaths.get(i));
+			}
+		}
+		return resultList;
+	}
+	
+	public List<CoronaData> searchRecoveredByArea(String key) {
+		List<CoronaData> resultList = new LinkedList<>();
+		for (int i = 0; i < coronaRecovered.size(); i++) {
+			if (coronaRecovered.get(i).getCountryOrRegion().toLowerCase().contains(key.toLowerCase()) ||
+					coronaRecovered.get(i).getProvinceOrState().toLowerCase().contains(key.toLowerCase())) {
+				resultList.add(coronaRecovered.get(i));
+			}
+		}
+		return resultList;
+	}
+	
+	public List<CoronaData> searchConfirmedByArea(String key) {
+		List<CoronaData> resultList = new LinkedList<>();
+		for (int i = 0; i < coronaConfirmed.size(); i++) {
+			if (coronaConfirmed.get(i).getCountryOrRegion().toLowerCase().contains(key.toLowerCase()) ||
+					coronaRecovered.get(i).getProvinceOrState().toLowerCase().contains(key.toLowerCase())) {
+				resultList.add(coronaConfirmed.get(i));
+			}
+		}
+		return resultList;
 	}
 	
 	public int getTotalDeaths() {
