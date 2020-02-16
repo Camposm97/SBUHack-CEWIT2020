@@ -27,15 +27,27 @@ public class CoronaDatabase {
 	}
 	
 	public int getTotalDeaths() {
-		return 0;
+		int count = 0;
+		for (CoronaData cd : coronaDeaths) {
+			count += cd.getDeathsConfirmedOrRecovered().getLast();
+		}
+		return count;
 	}
 	
 	public int getTotalRecovered() {
-		return 0;
+		int count = 0;
+		for (CoronaData cd : coronaRecovered) {
+			count += cd.getDeathsConfirmedOrRecovered().getLast();
+		}
+		return count;
 	}
 	
 	public int getTotalConfirmed() {
-		return 0;
+		int count = 0;
+		for (CoronaData cd : coronaConfirmed) {
+			count += cd.getDeathsConfirmedOrRecovered().getLast();
+		}
+		return count;
 	}
 
 	public void display() {
