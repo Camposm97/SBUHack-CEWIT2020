@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,8 +44,47 @@ public class CoronaDatabase {
 		List<String> list = new LinkedList<>(hashSet);
 		return list;
 	}
+
+	public int getCountryDeathCount(String key) {
+		int totalCount = 0;
+		for (CoronaData cd : coronaDeaths) {
+			if (cd.getCountryOrRegion().equalsIgnoreCase(key)) {
+				totalCount += cd.getLatestCount();
+			}
+		}
+		return totalCount;
+	}
+
+	public int getCountryRecoveredCount(String key) {
+		int totalCount = 0;
+		for (CoronaData cd : coronaRecovered) {
+			if (cd.getCountryOrRegion().equalsIgnoreCase(key)) {
+				totalCount += cd.getLatestCount();
+			}
+		}
+		return totalCount;
+	}
+
+	public int getCountryConfirmedCount(String key) {
+		int totalCount = 0;
+		for (CoronaData cd : coronaConfirmed) {
+			if (cd.getCountryOrRegion().equalsIgnoreCase(key)) {
+				totalCount += cd.getLatestCount();
+			}
+		}
+		return totalCount;
+	}
 	
-	
+	public HashMap<String, Integer> getCountries() {
+		List<String> countryList = getCountriesInfected();
+		HashMap<String, Integer> hashMap = new HashMap<>();
+
+		for (String country : countryList) {
+			int totalCount = getCountryDeathCount(country);
+			hashMap.put(country, totalCount);
+		}
+		return hashMap;
+	}
 
 	public List<CoronaData> searchDeathsByArea(String key) {
 		List<CoronaData> resultList = new LinkedList<>();
