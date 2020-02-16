@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.CoronaData;
 import model.CoronaDatabase;
-import util.DataParser;
+import util.CamposParser;
 
 @Deprecated
 public class KieferApp {
@@ -18,7 +18,7 @@ public class KieferApp {
 
 	}
 	public static List<CoronaData> findByArea(String area) throws IOException {
-		CoronaDatabase coronaDatabase= DataParser.importCoronaDB();
+		CoronaDatabase coronaDatabase= CamposParser.importCoronaDB();
 		List<CoronaData> list = coronaDatabase.getCoronaConfirmed();
 		List<CoronaData> resultList = new LinkedList<>();
 		for (int i = 0; i < list.size(); i++) {

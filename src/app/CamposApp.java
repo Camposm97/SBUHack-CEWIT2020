@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.CoronaData;
 import model.CoronaDatabase;
-import util.DataParser;
+import util.CamposParser;
 import view.CoronaDeathSearchPane;
 
 @Deprecated
@@ -66,7 +66,7 @@ public class CamposApp extends Application {
 	}
 
 	public static void main(String[] args) throws IOException {
-		db = DataParser.importCoronaDB();
+		db = CamposParser.importCoronaDB();
 		launch();
 	}
 }

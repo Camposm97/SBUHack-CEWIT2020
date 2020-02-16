@@ -17,7 +17,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.VBox;
 import model.CoronaData;
 import model.CoronaDatabase;
-import util.DataParser;
+import util.CamposParser;
 
 public class ConfirmedBox {
 	private VBox confirmedBox;
@@ -34,7 +34,7 @@ public class ConfirmedBox {
 		XYChart.Series dataSet1 = new XYChart.Series<>();
 		dataSet1.setName("Confirmed Cases");
 		
-		CoronaDatabase database = DataParser.importCoronaDB();
+		CoronaDatabase database = CamposParser.importCoronaDB();
 		list = database.getCoronaDeaths();
 		
 		for (int i = 0; i < database.getCoronaDeaths().size(); i++) {
