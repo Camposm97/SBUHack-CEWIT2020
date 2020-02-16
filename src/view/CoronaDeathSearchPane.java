@@ -8,16 +8,17 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import model.CoronaData;
 
-public class CoronaDeathSearchPane extends StackPane {
+public class CoronaDeathSearchPane extends BorderPane {
 	private List<CoronaData> coronaDeathList;
 	private TableView<CoronaData> tv;
 	
 	public CoronaDeathSearchPane(List<CoronaData> coronaDeathList) {
 		this.coronaDeathList = coronaDeathList;
 		initTableView();
+		super.setCenter(tv);
 	}
 	
 	private void initTableView() {
@@ -56,7 +57,7 @@ public class CoronaDeathSearchPane extends StackPane {
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("View Timeline");
 		MenuItem mi2 = new MenuItem("View Totals");
-//		cm.getItems().addAll(mi1, mi2);
+		cm.getItems().addAll(mi1, mi2);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
 		cm.show(getScene().getWindow(), x, y);
