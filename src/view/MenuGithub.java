@@ -6,18 +6,17 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
 public class MenuGithub extends Menu {
-	private MenuItem miMichaelGH, miKieferGH, miChrisGH, miJonathanGH;
+	private MenuItem miMichaelGH, miKieferGH, miJonathanGH;
 	
 	public MenuGithub() {
 		super("Developer's Github");
 		initMenus();
-		this.getItems().addAll(miMichaelGH, miKieferGH, miChrisGH, miJonathanGH);
+		this.getItems().addAll(miMichaelGH, miKieferGH, miJonathanGH);
 	}
 	
 	private void initMenus() {
 		miMichaelGH = new MenuItem("Michael's GitHub");
 		miKieferGH = new MenuItem("Kiefer's GitHub");
-		miChrisGH = new MenuItem("Chris' GitHub");
 		miJonathanGH = new MenuItem("Jonathan's GitHub");
 		
 		miMichaelGH.setOnAction(e -> {
@@ -26,10 +25,6 @@ public class MenuGithub extends Menu {
 
 		miKieferGH.setOnAction(e -> {
 			browse(GITHUB_KIEFER);
-		});
-
-		miChrisGH.setOnAction(e -> {
-			browse(GITHUB_CHRIS);
 		});
 
 		miJonathanGH.setOnAction(e -> {

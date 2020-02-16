@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 import app.App;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
@@ -14,14 +16,14 @@ public class MyMenuBar extends MenuBar {
 	private Menu menuFile, menuView, menuCorona, menuHelp, menuGithub;
 	private MenuItem miExit, miCDC, miDonate, miSources, miAbout;
 
-	public MyMenuBar(BorderPane root) {
+	public MyMenuBar(BorderPane root) throws IOException {
 		this.root = root;
 		initControls();
 		editControls();
 		this.getMenus().addAll(menuFile, menuView, menuHelp);
 	}
 
-	private void initControls() {
+	private void initControls() throws IOException {
 		menuFile = new Menu("File");
 		miExit = new MenuItem("Exit");
 		menuView = new Menu("View");

@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Menu;
@@ -12,7 +14,7 @@ public class MenuCorona extends Menu {
 	private LineChart chartConfirmed, chartDeath, chartRecovery;
 
 	
-	public MenuCorona(BorderPane root) {
+	public MenuCorona(BorderPane root) throws IOException {
 		super("Coronavirus");
 		
 		miConfirmedCases = new MenuItem("Confirmed Cases");
