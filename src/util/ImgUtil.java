@@ -19,6 +19,7 @@ public class ImgUtil {
 	public static final String MIKE_ICO = "res/images/mike.jpg";
 	public static final String KIEFER_ICO = "res/images/kiefer.png";
 	public static final String JOHN_ICO = "res/images/john.jpg";
+	public static final String CHRIS_ICO = "res/images/chris.jpg";
 	
 	public static Image loadImg(String url) {
 		FileInputStream fis = null;

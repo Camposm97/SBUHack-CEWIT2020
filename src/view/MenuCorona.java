@@ -1,17 +1,15 @@
 package view;
 
-<<<<<<< HEAD
+
+
+import java.io.IOException;
 
 import java.io.IOException;
 
 
-=======
-//<<<<<<< HEAD
-//=======
 import java.io.IOException;
 
-//>>>>>>> 9ae94d5f6f68f5ac5eb20acfe2c9a5a1294ede75
->>>>>>> 250777176a5cf55c63b4a985dcc260a95b284f3c
+
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
@@ -33,34 +31,29 @@ public class MenuCorona extends Menu {
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
 		miRecoveries = new MenuItem("Recoveries");
+		miTotals = new MenuItem("Totals");
 		
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
-<<<<<<< HEAD
-=======
-//<<<<<<< HEAD
-//		chartTotals = new BarChart(new NumberAxis("Days", 0, 0, 0), new NumberAxis("Cases", 0, 0, 0));
-//=======
->>>>>>> 250777176a5cf55c63b4a985dcc260a95b284f3c
+
 		CategoryAxis totalsx = new CategoryAxis();
 		totalsx.setLabel("Region");
 		NumberAxis totalsy = new NumberAxis();
 		totalsy.setLabel("Cases");
-<<<<<<< HEAD
+
 		BarChart<String, Number> chartTotals = new BarChart<String, Number>(totalsx, totalsy);	
-=======
-		BarChart<String, Number> chartTotals = new BarChart<String, Number>(totalsx, totalsy);
-//>>>>>>> 9ae94d5f6f68f5ac5eb20acfe2c9a5a1294ede75
+
 		
->>>>>>> 250777176a5cf55c63b4a985dcc260a95b284f3c
+		
+
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
 		DeathBox bigDBox = new DeathBox(chartDeath);
 		VBox deathBox = bigDBox.getDeathBox();
 		RecoveryBox bigRBox = new RecoveryBox(chartRecovery);
 		VBox recoveryBox = bigRBox.getRecoveryBox();
-		TotalsBox bigTBox = new TotalsBox(chartTotals);
+		TotalsBox bigTBox = new TotalsBox(barSet.getBarChart());
 		VBox totalsBox = bigTBox.getTotalsBox();
 		
 		miConfirmedCases.setOnAction(e -> {

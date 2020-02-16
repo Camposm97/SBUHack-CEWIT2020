@@ -1,7 +1,10 @@
 package view;
 
+import java.awt.MouseInfo;
 import java.util.List;
 
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -10,11 +13,11 @@ import javafx.scene.layout.StackPane;
 import model.CoronaData;
 
 public class CoronaDeathSearchPane extends StackPane {
-	private List<CoronaData> deathList;
+	private List<CoronaData> coronaDeathList;
 	private TableView<CoronaData> tv;
 	
-	public CoronaDeathSearchPane(List<CoronaData> deathList) {
-		this.deathList = deathList;
+	public CoronaDeathSearchPane(List<CoronaData> coronaDeathList) {
+		this.coronaDeathList = coronaDeathList;
 		initTableView();
 	}
 	
@@ -24,10 +27,10 @@ public class CoronaDeathSearchPane extends StackPane {
 		tv.setOnContextMenuRequested(e -> {
 			CoronaData cd = tv.getSelectionModel().getSelectedItem();
 			if (cd != null) {
-//				showContextMenu();
+				showContextMenu();
 			}
 		});
-		tv.getItems().setAll(deathList);
+		tv.getItems().setAll(coronaDeathList);
 	}
 	
 	public void initTableColumns() {
@@ -38,7 +41,6 @@ public class CoronaDeathSearchPane extends StackPane {
 
 		TableColumn<CoronaData, String> colCountry = new TableColumn<>("Country/Region");
 		colCountry.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("countryOrRegion"));
-		colCountry.setCellFactory(TextFieldTableCell.forTableColumn());
 		colCountry.setStyle(STYLE);
 
 		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Death Count");
@@ -48,6 +50,16 @@ public class CoronaDeathSearchPane extends StackPane {
 		tv.getColumns().add(colState);
 		tv.getColumns().add(colCountry);
 		tv.getColumns().add(colLatestDeathCount);
+	}
+	
+	private void showContextMenu() {
+		CoronaData cd = tv.getSelectionModel().getSelectedItem();
+		ContextMenu cm = new ContextMenu();
+	
+//		cm.getItems().addAll(mi1, mi2);
+		double x = MouseInfo.getPointerInfo().getLocation().getX();
+		double y = MouseInfo.getPointerInfo().getLocation().getY();
+		cm.show(getScene().getWindow(), x, y);
 	}
 	
 }
