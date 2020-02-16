@@ -19,6 +19,7 @@ import model.CoronaData;
 import model.CoronaDatabase;
 import util.CamposUtils;
 import util.DataParser;
+import view.CoronaDeathSearchPane;
 
 @Deprecated
 public class CamposApp extends Application {
@@ -26,6 +27,12 @@ public class CamposApp extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		CoronaDeathSearchPane root = new CoronaDeathSearchPane(db.getCoronaDeaths());
+		stage.setScene(new Scene(root));
+		stage.show();
+	}
+	
+	public StackPane getLineGraph() {
 		final NumberAxis xAxis = new NumberAxis();
 		final NumberAxis yAxis = new NumberAxis();
 		xAxis.setLabel("Day");
@@ -44,36 +51,22 @@ public class CamposApp extends Application {
 			break;
 		}
 		lc.setTitle("Days vs. Death Count");
-		lc.setOnContextMenuRequested(e1 -> {
-			System.out.println("Hello World!");
-			ContextMenu cm = new ContextMenu();
-			MenuItem miSave = new MenuItem("Save Graph");
-			miSave.setOnAction(e2 -> {
-				CamposUtils.saveGraph(lc);
-			});
-			cm.getItems().addAll(miSave);
-			cm.show(stage);
-		});
+//		lc.setOnContextMenuRequested(e1 -> {
+//			System.out.println("Hello World!");
+//			ContextMenu cm = new ContextMenu();
+//			MenuItem miSave = new MenuItem("Save Graph");
+//			miSave.setOnAction(e2 -> {
+//				CamposUtils.saveGraph(lc);
+//			});
+//			cm.getItems().addAll(miSave);
+//			cm.show(stage);
+//		});
 		StackPane root = new StackPane(lc);
-		stage.setScene(new Scene(root));
-		stage.show();
+		return root;
 	}
 
 	public static void main(String[] args) throws IOException {
 		db = DataParser.importCorona();
 		launch();
-//		Scanner in = new Scanner(System.in);
-//		String key = in.nextLine();
-//		List<CoronaData> list = db.getCoronaConfirmed();
-//		List<CoronaData> resultList = new LinkedList<>();
-//		for (int i = 0; i < list.size(); i++) {
-//			if (list.get(i).getCountryOrRegion().toLowerCase().contains(key.toLowerCase())) {
-//				resultList.add(list.get(i));
-//			}
-//		}
-//		in.close();
-//		for (CoronaData cd : resultList) {
-//			System.out.println(cd.getProvinceOrState() + ", " + cd.getCountryOrRegion());
-//		}
 	}
 }
