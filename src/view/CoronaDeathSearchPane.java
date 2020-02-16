@@ -3,12 +3,10 @@ package view;
 import java.awt.MouseInfo;
 import java.util.List;
 
-import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.StackPane;
 import model.CoronaData;
 
