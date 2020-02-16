@@ -20,6 +20,7 @@ import model.CoronaDatabase;
 import util.CamposUtils;
 import util.DataParser;
 
+@Deprecated
 public class CamposApp extends Application {
 	private static CoronaDatabase db;
 
@@ -59,20 +60,20 @@ public class CamposApp extends Application {
 	}
 
 	public static void main(String[] args) throws IOException {
-//		launch();
 		db = DataParser.importCorona();
-		Scanner in = new Scanner(System.in);
-		String key = in.nextLine();
-		List<CoronaData> list = db.getCoronaConfirmed();
-		List<CoronaData> resultList = new LinkedList<>();
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getCountryOrRegion().toLowerCase().contains(key.toLowerCase())) {
-				resultList.add(list.get(i));
-			}
-		}
-		in.close();
-		for (CoronaData cd : resultList) {
-			System.out.println(cd.getProvinceOrState() + ", " + cd.getCountryOrRegion());
-		}
+		launch();
+//		Scanner in = new Scanner(System.in);
+//		String key = in.nextLine();
+//		List<CoronaData> list = db.getCoronaConfirmed();
+//		List<CoronaData> resultList = new LinkedList<>();
+//		for (int i = 0; i < list.size(); i++) {
+//			if (list.get(i).getCountryOrRegion().toLowerCase().contains(key.toLowerCase())) {
+//				resultList.add(list.get(i));
+//			}
+//		}
+//		in.close();
+//		for (CoronaData cd : resultList) {
+//			System.out.println(cd.getProvinceOrState() + ", " + cd.getCountryOrRegion());
+//		}
 	}
 }

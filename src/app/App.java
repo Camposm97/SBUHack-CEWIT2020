@@ -16,7 +16,7 @@ public class App extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		System.out.println(DB.getTotalDeaths());
+		System.out.println(DB.getTotalRecovered());
 		root = new BorderPane();
 		menuBar = new MyMenuBar(root);
 		root.setTop(menuBar);
