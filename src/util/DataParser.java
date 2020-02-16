@@ -45,7 +45,7 @@ public class DataParser {
 
 	public static LinkedList<CoronaData> importDeathData(String url1) throws IOException {
 		String s = url1;
-		String inLine = "";
+		String currentLine = "";
 		URL url = new URL(s);
 		LinkedList<CoronaData> listCDD = new LinkedList<>();
 		HttpsURLConnection c = (HttpsURLConnection) url.openConnection();
@@ -60,22 +60,23 @@ public class DataParser {
 			sc.nextLine();
 			sc.nextLine();
 			while (sc.hasNextLine()) {
-				inLine = editCommas(sc.nextLine());
-				String provinceOrState;
-				String countryOrRegion;
-				String latitude;
-				String longitude;
+				currentLine = editCommas(sc.nextLine());
+				String provinceOrState, countryOrRegion;
+				String latitude, longitude;
 				int numberOfDeaths;
 				LinkedList<Integer> daysOfDeaths = new LinkedList<>();
-				String tokens[] = inLine.split(",");
-				if (inLine.charAt(0) == ',') {
+				String tokens[] = currentLine.split(",");
+				
+				if (currentLine.charAt(0) == ',') {
 					provinceOrState = "none";
 				} else {
 					provinceOrState = tokens[0];
 				}
+				
 				countryOrRegion = tokens[1];
 				latitude = tokens[2];
 				longitude = tokens[3];
+				
 				for (int i = 4; i < tokens.length; i++) {
 					if (tokens[i].equals(" ")) {
 						numberOfDeaths = 0;
@@ -84,9 +85,11 @@ public class DataParser {
 					}
 					daysOfDeaths.add(numberOfDeaths);
 				}
+				
 				CoronaData cdd = new CoronaData(provinceOrState, countryOrRegion, latitude, longitude, daysOfDeaths);
 				listCDD.add(cdd);
 			}
+			sc.close();
 			return listCDD;
 		}
 
@@ -94,12 +97,9 @@ public class DataParser {
 
 	public static CoronaDatabase importCorona() {
 		try {
-			LinkedList<CoronaData> cdd = DataParser.importDeathData(
-					TIME_SERIES_DEATHS_2019);
-			LinkedList<CoronaData> ccd = DataParser.importConfirmedData(
-					"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
-			LinkedList<CoronaData> crd = DataParser.importRecoveredData(
-					"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
+			LinkedList<CoronaData> cdd = DataParser.importDeathData(TIME_SERIES_DEATHS_2019);
+			LinkedList<CoronaData> ccd = DataParser.importConfirmedData(TIME_SERIES_CONFIRMED_2019);
+			LinkedList<CoronaData> crd = DataParser.importRecoveredData(TIME_SERIES_RECOVERED_2019);
 			CoronaDatabase saveCorona = new CoronaDatabase(cdd, crd, ccd);
 			return saveCorona;
 		} catch (IOException e) {
