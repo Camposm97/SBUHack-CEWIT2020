@@ -41,14 +41,13 @@ public class CoronaDeathSearchPane extends StackPane {
 		colCountry.setCellFactory(TextFieldTableCell.forTableColumn());
 		colCountry.setStyle(STYLE);
 
-		TableColumn<CoronaData, String> colDeathCount = new TableColumn<>("Latest Death Count");
-		colDeathCount.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("firstName"));
-//		colFirstName.setPrefWidth(WIDTH * 0.2);
-		colDeathCount.setStyle(STYLE);
+		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Death Count");
+		colLatestDeathCount.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("latestCount"));
+		colLatestDeathCount.setStyle(STYLE);
 
 		tv.getColumns().add(colState);
 		tv.getColumns().add(colCountry);
-		tv.getColumns().add(colDeathCount);
+		tv.getColumns().add(colLatestDeathCount);
 	}
 	
 }
