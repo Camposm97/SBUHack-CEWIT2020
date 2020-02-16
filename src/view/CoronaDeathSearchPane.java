@@ -5,6 +5,7 @@ import java.util.List;
 
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -57,8 +58,13 @@ public class CoronaDeathSearchPane extends BorderPane {
 	private void showContextMenu() {
 		CoronaData cd = tv.getSelectionModel().getSelectedItem();
 		ContextMenu cm = new ContextMenu();
-	
-//		cm.getItems().addAll(mi1, mi2);
+		MenuItem mi1 = new MenuItem("View Timeline");
+		mi1.setOnAction(e -> {
+			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Death Cases", "Deaths");
+			BorderPane root = (BorderPane) this.getParent();
+			root.setCenter(box.getRoot());
+		});
+		cm.getItems().addAll(mi1);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
 		cm.show(getScene().getWindow(), x, y);
