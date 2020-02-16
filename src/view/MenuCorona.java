@@ -23,6 +23,7 @@ public class MenuCorona extends Menu {
 		miConfirmedCases = new MenuItem("Confirmed Cases");
 		miDeaths = new MenuItem("Deaths");
 		miRecoveries = new MenuItem("Recoveries");
+		miTotals = new MenuItem("Totals");
 		
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
