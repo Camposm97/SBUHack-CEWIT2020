@@ -89,15 +89,20 @@ public class DataParser {
 
 	}
 
-	public static CoronaDatabase importCorona() throws IOException {
-		LinkedList<CoronaData> cdd = DataParser.importDeathData(
-				"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
-		LinkedList<CoronaData> ccd = DataParser.importConfirmedData(
-				"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
-		LinkedList<CoronaData> crd = DataParser.importRecoveredData(
-				"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
-		CoronaDatabase saveCorona = new CoronaDatabase(cdd, crd, ccd);
-		return saveCorona;
+	public static CoronaDatabase importCorona() {
+		try {
+			LinkedList<CoronaData> cdd = DataParser.importDeathData(
+					"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv");
+			LinkedList<CoronaData> ccd = DataParser.importConfirmedData(
+					"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv");
+			LinkedList<CoronaData> crd = DataParser.importRecoveredData(
+					"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv");
+			CoronaDatabase saveCorona = new CoronaDatabase(cdd, crd, ccd);
+			return saveCorona;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static LinkedList<CoronaData> importConfirmedData(String url1) throws IOException {

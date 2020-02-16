@@ -1,35 +1,71 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class CoronaDatabase {
-	private LinkedList<CoronaData> coronaDeaths;
-	private LinkedList<CoronaData> coronaRecovered;
-	private LinkedList<CoronaData> coronaConfirmed;
-	public CoronaDatabase(LinkedList<CoronaData> coronaDeaths, LinkedList<CoronaData> coronaRecovered,
-			LinkedList<CoronaData> coronaConfirmed) {
-		super();
+	private List<CoronaData> coronaDeaths;
+	private List<CoronaData> coronaRecovered;
+	private List<CoronaData> coronaConfirmed;
+
+	public CoronaDatabase(List<CoronaData> coronaDeaths, List<CoronaData> coronaRecovered,
+			List<CoronaData> coronaConfirmed) {
 		this.coronaDeaths = coronaDeaths;
 		this.coronaRecovered = coronaRecovered;
 		this.coronaConfirmed = coronaConfirmed;
 	}
-	public LinkedList<CoronaData> getCoronaDeaths() {
+
+	public List<CoronaData> getCoronaDeaths() {
 		return coronaDeaths;
 	}
-	public void setCoronaDeaths(LinkedList<CoronaData> coronaDeaths) {
-		this.coronaDeaths = coronaDeaths;
-	}
-	public LinkedList<CoronaData> getCoronaRecovered() {
+
+	public List<CoronaData> getCoronaRecovered() {
 		return coronaRecovered;
 	}
-	public void setCoronaRecovered(LinkedList<CoronaData> coronaRecovered) {
-		this.coronaRecovered = coronaRecovered;
-	}
-	public LinkedList<CoronaData> getCoronaConfirmed() {
+
+	public List<CoronaData> getCoronaConfirmed() {
 		return coronaConfirmed;
 	}
-	public void setCoronaConfirmed(LinkedList<CoronaData> coronaConfirmed) {
-		this.coronaConfirmed = coronaConfirmed;
+	
+	public int getTotalDeaths() {
+		int count = 0;
+		for (CoronaData cd : coronaDeaths) {
+			count += cd.getDeathsConfirmedOrRecovered().getLast();
+		}
+		return count;
 	}
 	
+	public int getTotalRecovered() {
+		int count = 0;
+		for (CoronaData cd : coronaRecovered) {
+			count += cd.getDeathsConfirmedOrRecovered().getLast();
+		}
+		return count;
+	}
+	
+	public int getTotalConfirmed() {
+		int count = 0;
+		for (CoronaData cd : coronaConfirmed) {
+			count += cd.getDeathsConfirmedOrRecovered().getLast();
+		}
+		return count;
+	}
+
+	public void display() {
+		System.out.println("Corona Deaths");
+		for (CoronaData data : coronaDeaths) {
+			System.out.println(data);
+		}
+		System.out.println();
+		System.out.println("Corona Recovered");
+		for (CoronaData data : coronaRecovered) {
+			System.out.println(data);
+		}
+		System.out.println();
+		System.out.println("Corona Confirmed");
+		for (CoronaData data : coronaConfirmed) {
+			System.out.println(data);
+		}
+		System.out.println("Done.");
+	}
+
 }

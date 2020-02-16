@@ -4,15 +4,19 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.CoronaDatabase;
+import util.DataParser;
 import view.MyMenuBar;
 
 public class App extends Application {
-	public static final String TITLE = "Coronavirus Tracker";
+	public static final String TITLE = "Coronavirus Monitor";
+	public static final CoronaDatabase DB = DataParser.importCorona();
 	private BorderPane root;
 	private MyMenuBar menuBar;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		System.out.println(DB.getTotalDeaths());
 		root = new BorderPane();
 		menuBar = new MyMenuBar(root);
 		root.setTop(menuBar);

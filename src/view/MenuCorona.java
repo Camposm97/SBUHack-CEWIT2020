@@ -1,18 +1,23 @@
 package view;
 
+<<<<<<< HEAD
 import java.io.IOException;
 
+=======
+import javafx.scene.chart.BarChart;
+>>>>>>> 40d64397013444d0b9ba149c40285e5f0cd82cf2
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import util.ImgUtil;
 
 public class MenuCorona extends Menu {
-	private MenuItem miConfirmedCases, miDeaths, miRecoveries;
+	private MenuItem miConfirmedCases, miDeaths, miRecoveries, miTotals;
 	private LineChart chartConfirmed, chartDeath, chartRecovery;
-
+	private BarChart chartTotals;
 	
 	public MenuCorona(BorderPane root) throws IOException {
 		super("Coronavirus");
@@ -24,6 +29,7 @@ public class MenuCorona extends Menu {
 		chartConfirmed = makeChart();
 		chartDeath = makeChart();
 		chartRecovery = makeChart();
+		chartTotals = new BarChart(new NumberAxis("Days", 0, 0, 0), new NumberAxis("Cases", 0, 0, 0));
 		
 		ConfirmedBox bigCBox = new ConfirmedBox(chartConfirmed);
 		VBox confirmedBox = bigCBox.getConfirmedBox();
@@ -31,6 +37,8 @@ public class MenuCorona extends Menu {
 		VBox deathBox = bigDBox.getDeathBox();
 		RecoveryBox bigRBox = new RecoveryBox(chartRecovery);
 		VBox recoveryBox = bigRBox.getRecoveryBox();
+		TotalsBox bigTBox = new TotalsBox(chartTotals);
+		VBox totalsBox = bigTBox.getTotalsBox();
 		
 		miConfirmedCases.setOnAction(e -> {
 			root.setCenter(confirmedBox);
@@ -43,7 +51,12 @@ public class MenuCorona extends Menu {
 		miRecoveries.setOnAction(e -> {
 			root.setCenter(recoveryBox);
 		});
-		this.getItems().addAll(miConfirmedCases, miDeaths, miRecoveries);
+		
+		miTotals.setOnAction(e -> {
+			root.setCenter(totalsBox);
+		});
+		this.getItems().addAll(miConfirmedCases, miDeaths, miRecoveries, miTotals);
+		this.setGraphic(ImgUtil.loadImgVScale(ImgUtil.CORONAVIRUS_ICO,16.0,16.0));
 	}
 	
 	public LineChart makeChart() {
