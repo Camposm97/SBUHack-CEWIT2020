@@ -3,6 +3,7 @@ package app;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,17 +21,7 @@ import util.CamposUtils;
 import util.DataParser;
 
 public class CamposApp extends Application {
-	private CoronaDatabase db;
-
-	@Override
-	public void init() {
-		try {
-			db = DataParser.importCorona();
-			db.display();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	private static CoronaDatabase db;
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -51,6 +42,7 @@ public class CamposApp extends Application {
 			lc.getData().add(series);
 			break;
 		}
+		lc.setTitle("Days vs. Death Count");
 		lc.setOnContextMenuRequested(e1 -> {
 			System.out.println("Hello World!");
 			ContextMenu cm = new ContextMenu();
@@ -66,7 +58,21 @@ public class CamposApp extends Application {
 		stage.show();
 	}
 
-	public static void main(String[] args) {
-		launch();
+	public static void main(String[] args) throws IOException {
+//		launch();
+		db = DataParser.importCorona();
+		Scanner in = new Scanner(System.in);
+		String key = in.nextLine();
+		List<CoronaData> list = db.getCoronaConfirmed();
+		List<CoronaData> resultList = new LinkedList<>();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getCountryOrRegion().toLowerCase().contains(key.toLowerCase())) {
+				resultList.add(list.get(i));
+			}
+		}
+		in.close();
+		for (CoronaData cd : resultList) {
+			System.out.println(cd.getProvinceOrState() + ", " + cd.getCountryOrRegion());
+		}
 	}
 }

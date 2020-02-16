@@ -32,7 +32,7 @@ public class CamposUtils {
 	    if (file != null) {
 	    	try {
 		        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-		        AlertHelper.showInfo(App.TITLE, null, null);
+		        AlertHelper.showInfo(App.TITLE, "Successfully saved image!", "Image saved at: " + file.getAbsolutePath());
 		    } catch (IOException ex) {
 		    	ex.printStackTrace();
 		    }
