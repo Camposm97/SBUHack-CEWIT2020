@@ -4,6 +4,7 @@ import java.awt.MouseInfo;
 import java.util.List;
 
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -53,7 +54,8 @@ public class CoronaDeathSearchPane extends StackPane {
 	private void showContextMenu() {
 		CoronaData cd = tv.getSelectionModel().getSelectedItem();
 		ContextMenu cm = new ContextMenu();
-	
+		MenuItem mi1 = new MenuItem("View Timeline");
+		MenuItem mi2 = new MenuItem("View Totals");
 //		cm.getItems().addAll(mi1, mi2);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
