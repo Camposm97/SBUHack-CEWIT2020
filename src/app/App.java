@@ -21,7 +21,7 @@ public class App extends Application {
 		menuBar = new MyMenuBar(root);
 		root.setTop(menuBar);
 		stage.setTitle(TITLE);
-		stage.setScene(new Scene(root, 700, 600));
+		stage.setScene(new Scene(root, 800, 600));
 		stage.show();
 	}
 	
