@@ -1,7 +1,8 @@
 package model;
 
+@Deprecated
 public class CoronaVirusInfo {
-	private String city;
+//	private String city;
 	private String province;
 	private String stateOrCountry;
 	private String lastUpdate;

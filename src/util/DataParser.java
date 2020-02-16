@@ -1,7 +1,5 @@
 package util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -11,7 +9,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 import model.CoronaData;
 import model.CoronaDatabase;
-import model.CoronaVirusInfo;
 
 public class DataParser {
 	private static final String TIME_SERIES_DEATHS_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv";
@@ -19,29 +16,30 @@ public class DataParser {
 	private static final String TIME_SERIES_RECOVERED_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv";
 	private static final int VALID_RESPONSE_CODE = 200;
 
-	public static LinkedList<CoronaVirusInfo> importCoronaData(File importFile) {
-		File f = importFile;
-		Scanner in;
-		LinkedList<CoronaVirusInfo> theList = new LinkedList<>();
-		try {
-			in = new Scanner(f);
-		} catch (FileNotFoundException e) {
-			in = null;
-			e.printStackTrace();
-		}
-		in.nextLine();
-		while (in.hasNextLine()) {
-			String currentLine = CamposUtils.editCommas(in.nextLine());
-			String[] tokens = currentLine.split(",");
-			if (tokens.length == 7) {
-				theList.add(ifSevenScraper(tokens, currentLine));
-			}
-			if (tokens.length == 6) {
-				// theList.add(ifSixScraper(tokens, currentLine));
-			}
-		}
-		return theList;
-	}
+//	@Deprecated
+//	public static LinkedList<CoronaVirusInfo> importCoronaData(File importFile) {
+//		File f = importFile;
+//		Scanner in;
+//		LinkedList<CoronaVirusInfo> theList = new LinkedList<>();
+//		try {
+//			in = new Scanner(f);
+//		} catch (FileNotFoundException e) {
+//			in = null;
+//			e.printStackTrace();
+//		}
+//		in.nextLine();
+//		while (in.hasNextLine()) {
+//			String currentLine = CamposUtils.editCommas(in.nextLine());
+//			String[] tokens = currentLine.split(",");
+//			if (tokens.length == 7) {
+//				theList.add(ifSevenScraper(tokens, currentLine));
+//			}
+//			if (tokens.length == 6) {
+//				// theList.add(ifSixScraper(tokens, currentLine));
+//			}
+//		}
+//		return theList;
+//	}
 
 	public static LinkedList<CoronaData> importDeathData(String url1) throws IOException {
 		String s = url1;
@@ -208,41 +206,42 @@ public class DataParser {
 
 	}
 
-	private static CoronaVirusInfo ifSevenScraper(String[] tokens, String currentLine) {
-		String city = null;
-		String province = null;
-		String stateOrCountry = null;
-		String lastUpdate = null;
-		int confirmedCases = 0;
-		int deaths = 0;
-		int recovered = 0;
-		if (currentLine.charAt(0) == ',') {
-			city = "none";
-		} else {
-			city = tokens[0];
-		}
-		province = tokens[1];
-		stateOrCountry = tokens[2];
-		lastUpdate = tokens[3];
-		if (tokens[4].equals(" ")) {
-			confirmedCases = 0;
-		} else {
-			confirmedCases = Integer.parseInt(tokens[4].trim());
-		}
-		if (tokens[5].equals(" ")) {
-			deaths = 0;
-		} else {
-			deaths = Integer.parseInt(tokens[5].trim());
-		}
-		if (tokens[6].equals(" ")) {
-			recovered = 0;
-		} else {
-			recovered = Integer.parseInt(tokens[6].trim());
-		}
-		CoronaVirusInfo cvi = new CoronaVirusInfo(city, province, stateOrCountry, lastUpdate, confirmedCases, deaths,
-				recovered);
-		return cvi;
-	}
+//	@Deprecated
+//	private static CoronaVirusInfo ifSevenScraper(String[] tokens, String currentLine) {
+//		String city = null;
+//		String province = null;
+//		String stateOrCountry = null;
+//		String lastUpdate = null;
+//		int confirmedCases = 0;
+//		int deaths = 0;
+//		int recovered = 0;
+//		if (currentLine.charAt(0) == ',') {
+//			city = "none";
+//		} else {
+//			city = tokens[0];
+//		}
+//		province = tokens[1];
+//		stateOrCountry = tokens[2];
+//		lastUpdate = tokens[3];
+//		if (tokens[4].equals(" ")) {
+//			confirmedCases = 0;
+//		} else {
+//			confirmedCases = Integer.parseInt(tokens[4].trim());
+//		}
+//		if (tokens[5].equals(" ")) {
+//			deaths = 0;
+//		} else {
+//			deaths = Integer.parseInt(tokens[5].trim());
+//		}
+//		if (tokens[6].equals(" ")) {
+//			recovered = 0;
+//		} else {
+//			recovered = Integer.parseInt(tokens[6].trim());
+//		}
+//		CoronaVirusInfo cvi = new CoronaVirusInfo(city, province, stateOrCountry, lastUpdate, confirmedCases, deaths,
+//				recovered);
+//		return cvi;
+//	}
 
 	public static String editCommas(String s) {
 		s = s.replaceAll(", ", " ");
