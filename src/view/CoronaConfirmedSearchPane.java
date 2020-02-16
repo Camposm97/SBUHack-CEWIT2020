@@ -55,13 +55,13 @@ public class CoronaConfirmedSearchPane extends BorderPane {
 	private void showContextMenu() {
 		CoronaData cd = tv.getSelectionModel().getSelectedItem();
 		ContextMenu cm = new ContextMenu();
-		MenuItem miTimeline= new MenuItem();
-		miTimeline.setOnAction(e->{
-			
+		MenuItem mi1 = new MenuItem("View Timeline");
+		mi1.setOnAction(e -> {
+			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Confirmed Cases", "Confirmed Cases");
+			BorderPane root = (BorderPane) this.getParent();
+			root.setCenter(box.getRoot());
 		});
-		cm.getItems().addAll(miTimeline);
-		
-//		cm.getItems().addAll(mi1, mi2);
+		cm.getItems().addAll(mi1);
 		double x = MouseInfo.getPointerInfo().getLocation().getX();
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
 		cm.show(getScene().getWindow(), x, y);
