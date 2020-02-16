@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 
 import app.App;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Insets;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.Chart;
 import javafx.scene.image.WritableImage;
@@ -15,6 +16,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class CamposUtils {
+	public static final Insets DEFAULT_INSETS = new Insets(10);
 	public static File[] scanFiles(String dir) {
 		return new File(dir).listFiles();
 	}
