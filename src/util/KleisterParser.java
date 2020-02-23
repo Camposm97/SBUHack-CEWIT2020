@@ -10,17 +10,17 @@ import javax.net.ssl.HttpsURLConnection;
 import model.CoronaData;
 import model.CoronaDatabase;
 
-public class CamposParser {
-	private static final String TIME_SERIES_DEATHS_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/time_series/time_series_2019-ncov-Deaths.csv";
+public class KleisterParser {
+	private static final String TIME_SERIES_DEATHS_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv";
 	private static final String TIME_SERIES_CONFIRMED_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
 	private static final String TIME_SERIES_RECOVERED_2019 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv";
 	private static final int VALID_RESPONSE_CODE = 200;
 
 	public static CoronaDatabase importCoronaDB() {
 		try {
-			LinkedList<CoronaData> cdd = CamposParser.importCoronaData(TIME_SERIES_DEATHS_2019);
-			LinkedList<CoronaData> ccd = CamposParser.importCoronaData(TIME_SERIES_CONFIRMED_2019);
-			LinkedList<CoronaData> crd = CamposParser.importCoronaData(TIME_SERIES_RECOVERED_2019);
+			LinkedList<CoronaData> cdd = KleisterParser.importCoronaData(TIME_SERIES_DEATHS_2019);
+			LinkedList<CoronaData> ccd = KleisterParser.importCoronaData(TIME_SERIES_CONFIRMED_2019);
+			LinkedList<CoronaData> crd = KleisterParser.importCoronaData(TIME_SERIES_RECOVERED_2019);
 			CoronaDatabase db = new CoronaDatabase(cdd, crd, ccd);
 			return db;
 		} catch (IOException e) {
