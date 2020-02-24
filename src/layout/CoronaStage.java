@@ -1,8 +1,8 @@
-package app;
+package layout;
 
+import app.App;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import layout.CoronaPane;
 
 import static util.ImgUtil.APP_ICO;
 import static util.ImgUtil.loadImg;

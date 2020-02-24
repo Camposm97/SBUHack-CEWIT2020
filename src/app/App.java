@@ -2,6 +2,7 @@ package app;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import layout.CoronaStage;
 import model.CoronaDatabase;
 import util.KleisterParser;
 
