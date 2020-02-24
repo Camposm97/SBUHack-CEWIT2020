@@ -8,6 +8,9 @@ import util.KleisterParser;
 
 /**
  * TODO:
+ * Make the program more modularized to the point where code is being reused
+ * every time when appropiate.
+ *
  * When viewing the corona virus, there should ONLY one table that displays the
  * latest deaths, confirmed, and recoverd making it easier for the user to see
  * the statistics instead of clicking around in the menu bar.
@@ -28,7 +31,11 @@ import util.KleisterParser;
  *
  * Maybe have the root display the global statistics of confirmed, deaths, and recovered.
  * Maybe in charts of the user choice.  Average the data and display.  Or ask the user
- * for his/her location to display the data of that location.  
+ * for his/her location to display the data of that location.
+ *
+ * The program should have a feature to be installed to the user's computer.
+ *
+ * The program should be an android app instead of a desktop app.
  * @author Camposm
  */
 
