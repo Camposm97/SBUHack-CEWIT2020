@@ -1,6 +1,4 @@
-package view;
-
-import java.io.IOException;
+package layout;
 
 import app.App;
 import javafx.application.Platform;

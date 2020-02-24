@@ -1,4 +1,4 @@
-package view;
+package layout;
 
 import app.App;
 import javafx.geometry.Pos;

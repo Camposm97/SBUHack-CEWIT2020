@@ -15,7 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
-public class CamposUtils {
+public class CamposUtil {
 	public static final Insets DEFAULT_INSETS = new Insets(10);
 	public static File[] scanFiles(String dir) {
 		return new File(dir).listFiles();

@@ -1,4 +1,4 @@
-package view;
+package layout;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;

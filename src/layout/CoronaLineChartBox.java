@@ -1,4 +1,4 @@
-package view;
+package layout;
 
 import java.util.LinkedList;
 
@@ -10,7 +10,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import model.CoronaData;
-import util.CamposUtils;
+import util.CamposUtil;
 
 public class CoronaLineChartBox {
 	private CoronaData cd;
@@ -38,7 +38,7 @@ public class CoronaLineChartBox {
 			ContextMenu cm = new ContextMenu();
 			MenuItem mi = new MenuItem("Save Graph");
 			mi.setOnAction(e1 -> {
-				CamposUtils.saveGraph(lc);
+				CamposUtil.saveGraph(lc);
 			});
 			cm.getItems().add(mi);
 			cm.show(stage);

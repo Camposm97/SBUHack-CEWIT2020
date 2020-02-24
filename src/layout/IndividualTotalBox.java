@@ -1,4 +1,4 @@
-package view;
+package layout;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,6 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.layout.HBox;
-import model.CoronaDatabase;
 
 public class IndividualTotalBox {
 	private HBox comparisonBox;

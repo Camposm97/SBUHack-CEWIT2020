@@ -1,4 +1,4 @@
-package view;
+package layout;
 
 import static util.CamposWeb.*;
 

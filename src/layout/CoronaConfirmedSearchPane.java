@@ -1,4 +1,4 @@
-package view;
+package layout;
 
 import java.awt.MouseInfo;
 import java.util.List;
@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import model.CoronaData;
-import util.CamposUtils;
+import util.CamposUtil;
 
 public class CoronaConfirmedSearchPane extends BorderPane {
 	private TextField tfSearch;
@@ -26,7 +26,7 @@ public class CoronaConfirmedSearchPane extends BorderPane {
 			tv.getItems().setAll(resultList);
 		});
 		initTableView();
-		super.setPadding(CamposUtils.DEFAULT_INSETS);
+		super.setPadding(CamposUtil.DEFAULT_INSETS);
 		super.setTop(tfSearch);
 		super.setCenter(tv);
 	}
