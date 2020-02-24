@@ -2,7 +2,7 @@ package app;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import layout.CoronaStage;
+import scene.layout.CoronaStage;
 import model.CoronaDatabase;
 import util.KleisterParser;
 
@@ -12,7 +12,7 @@ import util.KleisterParser;
  * every time when appropiate.
  *
  * When viewing the corona virus, there should ONLY one table that displays the
- * latest deaths, confirmed, and recoverd making it easier for the user to see
+ * latest deaths, confirmed, and recovered making it easier for the user to see
  * the statistics instead of clicking around in the menu bar.
  * (If implemented, then modify the context menu.)
  *
@@ -25,7 +25,7 @@ import util.KleisterParser;
  * to compare deaths to another location or compare deaths to confirmed of the
  * same location.  Maybe use mathematics in some way...
  *
- * The user should have the ability to view certain dates from date x to date y.
+ * The user should have the ability to view certain dates from date X to date Y.
  * This will require to scrap the dates from the csv files that Kiefer did not
  * scrap.
  *

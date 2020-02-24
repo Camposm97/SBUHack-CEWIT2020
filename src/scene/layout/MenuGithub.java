@@ -1,4 +1,4 @@
-package layout;
+package scene.layout;
 
 import static util.CamposWeb.*;
 

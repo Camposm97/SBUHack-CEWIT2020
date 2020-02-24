@@ -1,4 +1,4 @@
-package layout;
+package scene.layout;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package layout;
+package scene.layout;
 
 import java.awt.MouseInfo;
 import java.util.List;
@@ -14,15 +14,15 @@ import javafx.scene.layout.BorderPane;
 import model.CoronaData;
 import util.CamposUtil;
 
-public class CoronaRecoveredSearchPane extends BorderPane {
+public class CoronaConfirmedSearchPane extends BorderPane {
 	private TextField tfSearch;
 	private TableView<CoronaData> tv;
 	
-	public CoronaRecoveredSearchPane() {
+	public CoronaConfirmedSearchPane() {
 		tfSearch = new TextField();
 		tfSearch.setPromptText("Enter Locale Here");
 		tfSearch.setOnAction(e -> {
-			List<CoronaData> resultList = App.DB.searchRecoveredByArea(tfSearch.getText());
+			List<CoronaData> resultList = App.DB.searchConfirmedByArea(tfSearch.getText());
 			tv.getItems().setAll(resultList);
 		});
 		initTableView();
@@ -56,7 +56,7 @@ public class CoronaRecoveredSearchPane extends BorderPane {
 		colCountry.setPrefWidth(WIDTH);
 
 		
-		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Recovered Cases");
+		TableColumn<CoronaData, String> colLatestDeathCount = new TableColumn<>("Latest Confirmed Cases ");
 		colLatestDeathCount.setCellValueFactory(new PropertyValueFactory<CoronaData, String>("latestCount"));
 		colLatestDeathCount.setStyle(STYLE);
 		colLatestDeathCount.setPrefWidth(WIDTH);
@@ -72,7 +72,7 @@ public class CoronaRecoveredSearchPane extends BorderPane {
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("View Timeline");
 		mi1.setOnAction(e -> {
-			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Recovered Cases", "Recovered Cases");
+			CoronaLineChartBox box = new CoronaLineChartBox(cd, "Timeline of Confirmed Cases", "Confirmed Cases");
 			BorderPane root = (BorderPane) this.getParent();
 			root.setCenter(box.getRoot());
 		});
@@ -81,5 +81,4 @@ public class CoronaRecoveredSearchPane extends BorderPane {
 		double y = MouseInfo.getPointerInfo().getLocation().getY();
 		cm.show(getScene().getWindow(), x, y);
 	}
-
 }

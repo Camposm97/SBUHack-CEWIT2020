@@ -1,4 +1,4 @@
-package layout;
+package scene.layout;
 
 public class MyBarChart {
 	 

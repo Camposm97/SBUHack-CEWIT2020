@@ -1,4 +1,4 @@
-package layout;
+package scene.layout;
 
 import java.awt.MouseInfo;
 import java.util.List;
