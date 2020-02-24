@@ -17,14 +17,14 @@ public class MyMenuBar extends MenuBar {
 	private Menu menuFile, menuView, menuCorona, menuHelp, menuGithub;
 	private MenuItem miExit, miCDC, miDonate, miSources, miAbout;
 
-	public MyMenuBar(BorderPane root) throws IOException {
+	public MyMenuBar(BorderPane root)  {
 		this.root = root;
 		initControls();
 		editControls();
 		this.getMenus().addAll(menuFile, menuView, menuHelp);
 	}
 
-	private void initControls() throws IOException {
+	private void initControls() {
 		menuFile = new Menu("File");
 		miExit = new MenuItem("Exit");
 		menuView = new Menu("View");
