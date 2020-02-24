@@ -1,4 +1,9 @@
 package view;
 
-public class CoronaPane {
+import javafx.scene.layout.BorderPane;
+
+public class CoronaPane extends BorderPane {
+    public CoronaPane() {
+
+    }
 }
